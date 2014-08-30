@@ -6,7 +6,7 @@ public class Permutations {
 	private static int counter = 0;
 	
 	public static void main(String[] args) {
-		int n = 10;
+		int n = 7;
 		List<Integer> base = new ArrayList<Integer>();
 		for (int i = 1; i <= n; i++) { 
 			base.add(i); //Fills the array with values from 1 to n
