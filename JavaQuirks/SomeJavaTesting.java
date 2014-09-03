@@ -1,7 +1,5 @@
 import static org.junit.Assert.*;
 
-import javax.crypto.AEADBadTagException;
-
 import org.junit.Test;
 
 
