@@ -15,7 +15,6 @@ public class oddsNEnds {
 		//final int MY_AGE = 23;
 		//MY_AGE++; // Can't change a final variable.
 		//System.out.println(MY_AGE);
-<<<<<<< HEAD:oddsNEnds.java
 		double thing1 = -5.5;
 		int thing2 = (int) thing1;
 		System.out.println(thing2);
@@ -31,11 +30,9 @@ public class oddsNEnds {
 		System.out.println(stuNames[0]);
 		final int WEEKS_PER_YEAR = 52;
 		double[][] minTemps = new double[DAYS_PER_WEEK][WEEKS_PER_YEAR];
-=======
-		String thing1 = "hi " + 4;
-		System.out.println(thing1);
-		String thing2 = 1.000000001 + 2 + " hi";
-		System.out.println(thing2);
->>>>>>> b3ca19111e9b322111193a882a3b6432f5e35ffe:JavaQuirks/oddsNEnds.java
+		String thing5 = "hi " + 4;
+		System.out.println(thing5);
+		String thing6 = 1.000000001 + 2 + " hi";
+		System.out.println(thing6);
 	}
 }
