@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
-	public static int counter = 0;
+	public static long counter = 0;
 	
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter a positive number for n: ");
+		System.out.print("Enter a positive number for n: ");
 		int n = scanner.nextInt();
 		scanner.close();
 		System.out.println("Your n value is: " + n);
@@ -27,7 +27,7 @@ public class Main {
 		System.out.println("Counted number of permutations:  " + counter);
 	}
 	
-	public static int factorial(int number){
+	public static long factorial(int number){
 		if (number == 1) {
 			return 1;
 		} else {
