@@ -1,0 +1,21 @@
+Aaron Lemmon
+
+Problem 1. 
+	It would take a string of length 5 to encode a letter from an alphabet of 26 letters. A string of
+	length N consisting only of 0s and 1s has 2^N possible values since each position can have 2
+	possible values and there are N positions. A string of length 4 can only encode 16 possible values,
+	which isn't enough. However a string of length 5 can encode 32 possible values, which is a little
+	more than enough to encode a 26 letter alphabet.
+
+	The encoding for the letter 't' would be 10011. The letter 't' is the 20th letter of the alphabet.
+	Since we encode 'a' as the binary representation of 0, we should encode 't' as the binary
+	representation of 19. The number 19 in binary is 10011.
+	
+	It would take a string of length 6 to encode a letter from an alphabet of 33 letters. As stated
+	above, a string of length 5 can encode 32 possible values, which isn't quite enough in this case.
+	A string of length 6 can encode 64 possible values, which will be enough to encode a 33 letter alphabet.
+	
+	For an alphabet with N letters, it would take a string of length ceiling(logBaseTwo(N)). A string
+	of length N consisting only of 0s and 1s has 2^N possible values since each position can have 2
+	possible values and there are N positions. So to find the length of the string needed to encode
+	N letters, we need take the logBaseTwo of N and then round up if necessary.
