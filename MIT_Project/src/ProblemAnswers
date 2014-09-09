@@ -19,3 +19,13 @@ Problem 1.
 	of length N consisting only of 0s and 1s has 2^N possible values since each position can have 2
 	possible values and there are N positions. So to find the length of the string needed to encode
 	N letters, we need take the logBaseTwo of N and then round up if necessary.
+	
+Problem 4.
+	Encoding of ace: 10110101
+	Encoding of add: 101000100
+	Decoding of 101001: ada
+	Decoding of 0010100: bad
+	
+Problem 5.
+	do stuff
+	
