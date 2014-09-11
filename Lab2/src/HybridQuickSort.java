@@ -3,12 +3,13 @@ import java.util.Arrays;
 
 public class HybridQuickSort {
 
-	private static final int THRESHOLD = 10;
+	private static final int THRESHOLD = 20;
 
 	public static void sort(TestInteger[] array, int start, int end) {
 		quickSort(array, start, end);
 		//System.out.println(Arrays.toString(array));
 		insertionSort(array);
+		//System.out.println(Arrays.toString(array));
 	}
 
 	public static void quickSort(TestInteger[] array, int start, int end) {
