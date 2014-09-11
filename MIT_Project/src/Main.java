@@ -20,6 +20,8 @@ public class Main {
 		System.out.println("Problem 3:");
 		System.out.println("Decoding of the given code:");
 		System.out.println(EqualLengthCoder.decode(code1));
+		System.out.println(8.55 + 1.60 + 3.16 + 3.87 + 12.10 + 2.18 + 2.09 + 4.96 + 7.33 + .22 + .81 + 4.21 + 2.53 +
+				7.17 + 7.47 + 2.07 + .10 + 6.33 + 6.73 + 8.94 + 2.68 + 1.06 + 1.83 + .19 + 1.72 + .11);
 	}
 
 }

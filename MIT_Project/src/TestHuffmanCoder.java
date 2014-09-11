@@ -1,19 +1,31 @@
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class TestHuffmanCoder {
-		//Map frequencies = new Map<Character, Integer>();
-		//Fill it {(a,50), (b, 30), (c, 20)}
 		
-		//Map expectedCodeTable = new Map<Character, String>();
-		// It should be {(a,"0"), (b, "10"), (c, "110")} or something
+	private Map<Character, Double> frequencies = new HashMap<Character, Double>();
+	private Map<Character, String> expectedCodeTable = new HashMap<Character, String>();
+
+	@Before
+	public void setUp() {
+		frequencies.put('a', 10.0);
+		frequencies.put('b', 30.0);
+		frequencies.put('c', 60.0);
+		expectedCodeTable.put('a', "00");
+		expectedCodeTable.put('b', "01");
+		expectedCodeTable.put('c', "1");
+	}
+	
 	@Test
-	public void testMakeCodes() {
-		// assertEquals(encodings, HuffmanCoder.makeCodeTable(frequencies));
+	public void testGetCodeTable() {
+		HuffmanCoder coder = new HuffmanCoder(frequencies);
+		assertEquals(expectedCodeTable, coder.getCodeTable());
 	}
 	
 	@Test
