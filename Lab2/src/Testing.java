@@ -51,6 +51,14 @@ public class Testing {
 		System.out.println(Arrays.toString(sorted3));
 		assertTrue(true);
 	}
+	
+	@Test
+	public void testRandomQuickSort() {
+		RandomQuickSort.sort(unsorted3, 0, unsorted3.length - 1);
+		assertArrayEquals(sorted3, unsorted3);
+		assertArrayEquals(sorted3, sorted3);
+		assertTrue(RandomQuickSort.isSorted(unsorted3));
+	}
 
 	
 }

@@ -9,12 +9,12 @@ public class QuickSort {
 		}
 	}
 
-	private static int partition(TestInteger[] array, int start, int end) {
+	public static int partition(TestInteger[] array, int start, int end) {
 		TestInteger pivot = array[end];
 		int i = start - 1;
 		
 		for (int j = start; j < end; j++) {
-			if (array[j].compareTo(pivot) != 1) {
+			if (array[j].compareTo(pivot) <= 0) {
 				i++;
 				swap(array, i, j);
 			}
@@ -23,7 +23,7 @@ public class QuickSort {
 		return i + 1;
 	}
 
-	private static void swap(TestInteger[] array, int index1, int index2) {
+	public static void swap(TestInteger[] array, int index1, int index2) {
 		TestInteger temp = array[index1];
 		array[index1] = array[index2];
 		array[index2] = temp;
