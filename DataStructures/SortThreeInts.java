@@ -1,5 +1,6 @@
+// Aaron Lemmon
 public class SortThreeInts {
-	// Testing
+	// Testing:
 	// -5, 4, 8 -> -5, 4, 8
 	// 8, 4, -5 -> -5, 4, 8
 	// 1, 2, 3 -> 1, 2, 3
