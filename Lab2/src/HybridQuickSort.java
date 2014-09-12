@@ -1,9 +1,10 @@
+// Dalton Gusaas && Aaron Lemmon
 import java.util.Arrays;
 
 
 public class HybridQuickSort {
 
-	private static final int THRESHOLD = 20;
+	private static final int THRESHOLD = 4;
 
 	public static void sort(TestInteger[] array, int start, int end) {
 		quickSort(array, start, end);

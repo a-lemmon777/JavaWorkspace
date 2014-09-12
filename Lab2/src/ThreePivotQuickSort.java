@@ -1,9 +1,10 @@
+// Dalton Gusaas && Aaron Lemmon
 import java.util.Random;
 
 
 public class ThreePivotQuickSort extends QuickSort {
 
-	private static final int THRESHOLD = 5
+	private static final int THRESHOLD = 15
 			;
 
 	public static void sort(TestInteger[] array, int start, int end) {
