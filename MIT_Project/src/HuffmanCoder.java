@@ -3,26 +3,37 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class HuffmanCoder {
-	
+
 	private PriorityQueue<Node> queue = new PriorityQueue<Node>();
 	private Map<Character, String> codeTable = new HashMap<Character, String>();
 	private String treeString;
+	private static final Double LOWER_BOUND = 99.895;
+	private static final Double UPPER_BOUND = 100.015;
 
 	public HuffmanCoder(Map<Character, Double> frequencies) {
-		// Make a new Node for each character and put them into the PriorityQueue
-		for (Map.Entry<Character, Double> entry : frequencies.entrySet()) {
-			queue.add(new Node(entry.getKey(), entry.getValue(), null, null));
+		Double sumOfFrequencies = 0.0;
+		for (Double frequency : frequencies.values()) {
+			sumOfFrequencies += frequency;
 		}
-		// Construct a binary tree inside queue
-		while (queue.size() > 1) {
-			Node left = queue.poll();
-			Node right = queue.poll();
-			double combinedFrequency = left.getFrequency() + right.getFrequency();
-			queue.add(new Node(null, combinedFrequency, left, right));
+		if (LOWER_BOUND <= sumOfFrequencies && sumOfFrequencies <= UPPER_BOUND){
+			// Make a new Node for each character and put them into the PriorityQueue
+			for (Map.Entry<Character, Double> entry : frequencies.entrySet()) {
+				queue.add(new Node(entry.getKey(), entry.getValue(), null, null));
+			}
+			// Construct a binary tree inside queue
+			while (queue.size() > 1) {
+				Node left = queue.poll();
+				Node right = queue.poll();
+				double combinedFrequency = left.getFrequency() + right.getFrequency();
+				queue.add(new Node(null, combinedFrequency, left, right));
+			}
+			// Construct a code table (a Map of Characters and Strings containing the encoding for each character)
+			buildCodeTable(codeTable , queue.peek(), "");
+			// Construct a String representation of the binary tree
+			treeString = makeTreeString(queue.peek());
+		} else {
+			throw new RuntimeException("Frequencies must add up to 100");
 		}
-		// Construct a code table (a Map of Characters and Strings containing the encoding for each character)
-		buildCodeTable(codeTable , queue.peek(), "");
-		treeString = makeTreeString(queue.peek());
 	}
 
 	private void buildCodeTable(Map<Character, String> codeTable, Node node, String encoding) {
@@ -50,6 +61,36 @@ public class HuffmanCoder {
 			contents += makeTreeString(node.getLeft()) + "+" + makeTreeString(node.getRight());
 		}
 		return "(" + node.getFrequency() + "," + contents + ")";
+	}
+
+	public String encode(String phrase) {
+		String result = "";
+		for (char character : phrase.toCharArray()) {
+			if (codeTable.containsKey(character)) {
+				result += codeTable.get(character);
+			} else {
+				result += "NO_ENCODING_FOUND";
+			}
+		}
+		return result;
+	}
+
+	public String decode(String codedMessage) {
+		String result = "";
+		int i = 0;
+		while (i < codedMessage.length()) {
+			Node node = queue.peek();
+			while (!node.isLeaf()) {
+				if (codedMessage.charAt(i) == '0') {
+					node = node.getLeft();
+				} else {
+					node = node.getRight();
+				}
+				i++;
+			}
+			result += node.getCharacter();
+		}
+		return result;
 	}
 
 }
