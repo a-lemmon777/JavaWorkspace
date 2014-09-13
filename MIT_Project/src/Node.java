@@ -1,5 +1,6 @@
+// Aaron Lemmon
 
-public class Node implements Comparable<Node>{
+public class Node implements Comparable<Node> {
 	
 	private final Character character;
 	private final Double frequency;
@@ -13,6 +14,10 @@ public class Node implements Comparable<Node>{
 		this.right = right;
 	}
 
+	public char getCharacter() {
+		return character;
+	}
+	
 	public double getFrequency() {
 		return frequency;
 	}
@@ -27,10 +32,6 @@ public class Node implements Comparable<Node>{
 
 	public boolean isLeaf() {
 		return (left == null && right == null);
-	}
-
-	public char getCharacter() {
-		return character;
 	}
 
 	@Override
@@ -49,5 +50,4 @@ public class Node implements Comparable<Node>{
 			return left.getLeftMostLetter();
 		}
 	}
-
 }

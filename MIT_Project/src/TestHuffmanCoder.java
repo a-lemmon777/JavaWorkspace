@@ -1,3 +1,5 @@
+// Aaron Lemmon
+
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
@@ -10,8 +12,6 @@ import org.junit.Test;
 public class TestHuffmanCoder {
 		
 	private Map<Character, Double> frequencies = new HashMap<Character, Double>();
-	private Map<Character, String> expectedCodeTable = new HashMap<Character, String>();
-	private String expectedTree = "(100.0,(40.0,(10.0,a)+(30.0,b))+(60.0,c))";
 	private HuffmanCoder coder;
 
 	@Before
@@ -19,34 +19,34 @@ public class TestHuffmanCoder {
 		frequencies.put('a', 10.0);
 		frequencies.put('b', 30.0);
 		frequencies.put('c', 60.0);
-		expectedCodeTable.put('a', "00");
-		expectedCodeTable.put('b', "01");
-		expectedCodeTable.put('c', "1");
 		coder = new HuffmanCoder(frequencies);
-		}
+	}
 	
 	@Test (expected = RuntimeException.class)
 	public void frequenciesDontAddTo100() {
 		Map<Character, Double> badFrequencies = new HashMap<Character, Double>();
-		frequencies.put('b', 10.0);
-		frequencies.put('a', 10.0);
-		frequencies.put('d', 10.0);
+		badFrequencies.put('b', 10.0);
+		badFrequencies.put('a', 10.0);
+		badFrequencies.put('d', 10.0);
 		new HuffmanCoder(badFrequencies);
 	}
 	
 	@Test
+	public void singleCharacterShouldCodeToOne() {
+		Map<Character, Double> singleCharacterFrequencies = new HashMap<Character, Double>();
+		singleCharacterFrequencies.put('m', 100.0);
+		HuffmanCoder singleLetterCoder = new HuffmanCoder(singleCharacterFrequencies);
+		assertEquals("{\1=0, m=1}", singleLetterCoder.getCodeTable().toString());
+	}
+	
+	@Test
 	public void testGetCodeTable() {
-		System.out.println(coder.getCodeTable().get('a'));
-		System.out.println(coder.getCodeTable().get('b'));
-		System.out.println(coder.getCodeTable().get('c'));
-		assertEquals(expectedCodeTable, coder.getCodeTable());
+		assertEquals("{a=00, b=01, c=1}", coder.getCodeTable().toString());
 	}
 	
 	@Test
 	public void testGetTree() {
-		System.out.println(coder.getTree());
-		assertEquals(expectedTree, coder.getTree());
-		
+		assertEquals("(100.0,(40.0,(10.0,a)+(30.0,b))+(60.0,c))", coder.getTree());
 	}
 	
 	@Test

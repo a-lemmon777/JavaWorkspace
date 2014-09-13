@@ -4,8 +4,7 @@ import java.util.Random;
 
 public class ThreePivotQuickSort extends QuickSort {
 
-	private static final int THRESHOLD = 15
-			;
+	private static final int THRESHOLD = 15;
 
 	public static void sort(TestInteger[] array, int start, int end) {
 		if (start < end) {

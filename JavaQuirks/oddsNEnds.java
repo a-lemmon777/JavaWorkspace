@@ -34,5 +34,19 @@ public class oddsNEnds {
 		System.out.println(thing5);
 		String thing6 = 1.000000001 + 2 + " hi";
 		System.out.println(thing6);
+		int[] freq = new int[4];
+		freq[0] = 10;
+		freq[1] = 11;
+		freq[2] = 12;
+		freq[3] = 13;
+		System.out.println("here we go");
+		System.out.println(freq[0]);
+		System.out.println(freq['\0']);
+		
+		System.out.println('\61');
+		System.out.println('\141');
+		System.out.println('\377');
+		System.out.println('\377');
+		
 	}
 }

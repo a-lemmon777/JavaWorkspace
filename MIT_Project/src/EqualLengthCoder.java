@@ -1,3 +1,4 @@
+// Aaron Lemmon
 
 public class EqualLengthCoder {
 

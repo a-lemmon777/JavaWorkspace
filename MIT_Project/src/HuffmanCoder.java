@@ -1,3 +1,6 @@
+// Aaron Lemmon
+// Inspiration drawn from: http://algs4.cs.princeton.edu/55compression/Huffman.java.html
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -20,6 +23,12 @@ public class HuffmanCoder {
 			for (Map.Entry<Character, Double> entry : frequencies.entrySet()) {
 				queue.add(new Node(entry.getKey(), entry.getValue(), null, null));
 			}
+			
+			// Handles the case where only a single character is provided
+			if (queue.size() == 1) {
+				queue.add(new Node('\1', 0.0, null, null));
+			}
+			
 			// Construct a binary tree inside queue
 			while (queue.size() > 1) {
 				Node left = queue.poll();
