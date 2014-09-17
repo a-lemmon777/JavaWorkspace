@@ -1,6 +1,7 @@
 // Aaron Lemmon
 import java.util.Stack;
 import java.util.Random;
+import java.util.Arrays;
 
 public class ProblemSet2 {
 	
@@ -44,6 +45,17 @@ public class ProblemSet2 {
 		System.out.println(randomSentence(articles, adjectives, nouns, verbs));
 		System.out.println(randomSentence(articles, adjectives, nouns, verbs));
 		System.out.println(randomSentence(articles, adjectives, nouns, verbs));
+		
+		// Testing for problem 3
+		System.out.println("Testing for problem 3 (numbers should be highest near the center):");
+		int[] distribution = diceRollDistribution();
+		System.out.println(Arrays.toString(distribution));
+			// Make sure all elements add up to 10000 rolls.
+		int sum = 0;
+		for (int i = 0; i < distribution.length; i++) {
+			sum += distribution[i];
+		}
+		System.out.println(sum + " of 10000 rolls accounted for.");
 	}
 	
 	static boolean stacksEqual(Stack<Integer> firstStack, Stack<Integer> secondStack) {
@@ -79,14 +91,25 @@ public class ProblemSet2 {
 	
 	static String randomSentence(String[] articles, String[] adjectives, String[] nouns, String[] verbs) {
 		Random random = new Random();
+		// These get and store a random String from each array
 		String article = articles[random.nextInt(articles.length)];
 		String adjective = adjectives[random.nextInt(adjectives.length)];
 		String noun = nouns[random.nextInt(nouns.length)];
 		String verb = verbs[random.nextInt(verbs.length)];
+		
 		return (article + " " + adjective + " " + noun + " " + verb + ".");	
 	}
 	
 	static int[] diceRollDistribution() {
-		return new int[1];	
+		Random random = new Random();
+		int[] distribution = new int[11]; // Needs 11 spaces since dice rolls can be from 2 to 12 inclusive
+		for (int i = 0; i < 10000; i++) {
+			// Each die roll will be stored as an int from 0 to 5 to avoid unnecessary arithmetic
+			int roll1 = random.nextInt(6);
+			int roll2 = random.nextInt(6);
+			// Index 0 will represent a real-life roll of 2 and so on...
+			distribution[roll1 + roll2]++;
+		}
+		return distribution;	
 	}
 }
