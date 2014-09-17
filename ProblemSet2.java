@@ -1,5 +1,6 @@
 // Aaron Lemmon
 import java.util.Stack;
+import java.util.Random;
 
 public class ProblemSet2 {
 	
@@ -31,6 +32,18 @@ public class ProblemSet2 {
 		System.out.println(!stacksEqual(stack3and4, stack2and3and4)); // Makes sure the entire stacks are compared
 		System.out.println(stacksEqual(stack2and3and4, anotherStack2and3and4));
 		System.out.println(!stacksEqual(stack2and3and4, stack4and3and2)); // Makes sure that order matters
+		
+		// Setup for testing problem 2
+		String[] articles = {"A", "The", "This", "That", "Her", "His"};
+		String[] adjectives = {"green", "mean", "jolly", "tall"};
+		String[] nouns = {"dog", "cat", "house", "bicycle"};
+		String[] verbs = {"is jumping", "is dancing", "is reading", "is programming"};
+		
+		// Testing for problem 2
+		System.out.println("Testing for problem 2 (output should be well-formed sentences):");
+		System.out.println(randomSentence(articles, adjectives, nouns, verbs));
+		System.out.println(randomSentence(articles, adjectives, nouns, verbs));
+		System.out.println(randomSentence(articles, adjectives, nouns, verbs));
 	}
 	
 	static boolean stacksEqual(Stack<Integer> firstStack, Stack<Integer> secondStack) {
@@ -65,7 +78,12 @@ public class ProblemSet2 {
 	}
 	
 	static String randomSentence(String[] articles, String[] adjectives, String[] nouns, String[] verbs) {
-		return "";	
+		Random random = new Random();
+		String article = articles[random.nextInt(articles.length)];
+		String adjective = adjectives[random.nextInt(adjectives.length)];
+		String noun = nouns[random.nextInt(nouns.length)];
+		String verb = verbs[random.nextInt(verbs.length)];
+		return (article + " " + adjective + " " + noun + " " + verb + ".");	
 	}
 	
 	static int[] diceRollDistribution() {
