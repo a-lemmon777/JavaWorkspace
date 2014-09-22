@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class oddsNEnds {
+public class OddsNEnds {
 	
 	private static int[] temp;
 	

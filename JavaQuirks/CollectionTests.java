@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-public class collectionTests {
+public class CollectionTests {
 
 	@Test
 	public void arrayDeclaration() {
