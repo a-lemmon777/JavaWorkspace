@@ -46,10 +46,24 @@ public class CollectionTests {
 		coolArray[0] = new int[3]; // says cant convert to String[]
 	}
 	
+	@Test (expected = Error.class)
+	public void testMultiDimArraysNoLengths() {
+		String[][] coolArray;
+		coolArray = new String[][]; // Need to offer a length
+		assertArrayEquals(null, coolArray[0]);
+	}	
+	
 	@Test
 	public void testMultiDimArrays() {
 		String[][] coolArray;
 		coolArray = new String[5][]; // Yes!!!! I dont have to initialize subarrays!!!!
+		assertArrayEquals(null, coolArray[0]);
+	}
+	
+	@Test (expected = Error.class)
+	public void testMultiDimArraysSubLength() {
+		String[][] coolArray;
+		coolArray = new String[][5]; // Cant specify length after an empty dimension.
 		assertArrayEquals(null, coolArray[0]);
 	}
 	
