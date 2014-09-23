@@ -66,12 +66,18 @@ public class WrapperTests {
 	
 	@Test
 	public void testBoxing() {
-		Integer first = 5;
+		Integer first = 5; //boxing when assigning to variable of wrapper class
 		int i = 1;
-		Integer second = i;
+		Integer second = i; // works with variables too
 		List<Integer> myList = new ArrayList<Integer>();
-		
-		
+		myList.add(4); // works when passed as an argument
+	}
+
+	@Test
+	public void testUnboxing() {
+		Integer first = new Integer(5);
+		int i = first; // unboxes when assigning to a primitive type
+		char second = "hi bob".charAt(first); // unboxes when used as an argument to a primitive parameter
 		
 	}
 }
