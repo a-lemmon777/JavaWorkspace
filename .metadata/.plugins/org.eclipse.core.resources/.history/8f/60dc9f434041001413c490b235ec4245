@@ -1,0 +1,16 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+public class collectionTests {
+
+	@Test
+	public void test() {
+		String[][] coolArray;
+		coolArray = new String[5][3];
+		coolArray[2][4] = "Last thing";
+		System.out.println(coolArray[2][4]);
+	}
+
+}
