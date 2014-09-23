@@ -14,7 +14,7 @@ org.eclipse.jdt.ui.text.code_templates_migrated=true
 org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
 org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="false" context\="java-members" deleted\="false" description\="test method (JUnit 4)" enabled\="true" id\="org.eclipse.jdt.ui.templates.test_junit4" name\="test">@${testType\:newType(org.junit.Test)}\r\npublic void ${testName}() {\r\n\t${staticImport\:importStatic('org.junit.Assert.*')}${cursor}\r\n}</template></templates>
 org.eclipse.jdt.ui.text.templates_migrated=true
-org.eclipse.jdt.ui.typefilter.enabled=java.awt.*;
+org.eclipse.jdt.ui.typefilter.disabled=java.awt.*;
 org.eclipse.jface.textfont=1|Courier New|10.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Courier New;
 proposalOrderMigrated=true
 spelling_locale_initialized=true
