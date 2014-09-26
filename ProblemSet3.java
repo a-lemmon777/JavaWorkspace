@@ -30,28 +30,29 @@ public class ProblemSet3 {
        If there is more than one such element, any one of them may be returned. 
        The method can assume that the given array contains at least one element.
      **/
-	public static String mostFrequentElement(String[] elements) {
-		ArrayList<String> encounteredStrings = new ArrayList<String>();
-		ArrayList<Integer> stringCounts = new ArrayList<Integer>();
+	static String mostFrequentElement(String[] elements) {
+		//ArrayList<String> encounteredStrings = new ArrayList<String>();
+		//ArrayList<Integer> stringCounts = new ArrayList<Integer>();
 		
-		for (String currentString : elements) {
-			int index = encounteredStrings.indexOf(currentString);
-			if (index == -1) {
-				encounteredStrings.add(currentString);
-				stringCounts.add(1);
-			} else {
-				stringCounts.set(index, stringCounts.get(index) + 1);
-			}
-		}
-		
-		int indexHoldingMaxCount = 0;
-		int maxCount = 0;
-		for (int currentIndex = 0; currentIndex < stringCounts.size(); currentIndex++) {
-			if (stringCounts.get(currentIndex) > maxCount) { // Should always be true the first time through the loop
-				maxCount = stringCounts.get(currentIndex);
-				indexHoldingMaxCount = currentIndex;
-			}
-		}
-		return encounteredStrings.get(indexHoldingMaxCount);
+	//	for (String currentString : elements) {
+	//		int index = encounteredStrings.indexOf(currentString);
+	//		if (index == -1) {
+	//			encounteredStrings.add(currentString);
+	//			stringCounts.add(1);
+	//		} else {
+	//			stringCounts.set(index, stringCounts.get(index) + 1);
+	//		}
+	//	}
+	//	
+	//	int indexHoldingMaxCount = 0;
+	//	int maxCount = 0;
+	//	for (int currentIndex = 0; currentIndex < stringCounts.size(); currentIndex++) {
+	//		if (stringCounts.get(currentIndex) > maxCount) { // Should always be true the first time through the loop
+	//			maxCount = stringCounts.get(currentIndex);
+	//			indexHoldingMaxCount = currentIndex;
+	//		}
+	//	}
+	//	return encounteredStrings.get(indexHoldingMaxCount);
+		return "";
 	}
 }
