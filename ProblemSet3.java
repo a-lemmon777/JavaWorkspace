@@ -1,8 +1,9 @@
+// Aaron Lemmon
+
 import java.util.ArrayList;
 
 public class ProblemSet3 {
 	
-
 	public static void main(String [] args) {
 		// sample test: in this example "jayhawk" is the most frequent element:
 		String[] elements = {"wildcat", "gopher", "badger", "wildcat", "badger", "hawkeye", 
@@ -31,28 +32,27 @@ public class ProblemSet3 {
        The method can assume that the given array contains at least one element.
      **/
 	static String mostFrequentElement(String[] elements) {
-		//ArrayList<String> encounteredStrings = new ArrayList<String>();
-		//ArrayList<Integer> stringCounts = new ArrayList<Integer>();
+		ArrayList<String> encounteredStrings = new ArrayList<String>();
+		ArrayList<Integer> stringCounts = new ArrayList<Integer>();
 		
-	//	for (String currentString : elements) {
-	//		int index = encounteredStrings.indexOf(currentString);
-	//		if (index == -1) {
-	//			encounteredStrings.add(currentString);
-	//			stringCounts.add(1);
-	//		} else {
-	//			stringCounts.set(index, stringCounts.get(index) + 1);
-	//		}
-	//	}
-	//	
-	//	int indexHoldingMaxCount = 0;
-	//	int maxCount = 0;
-	//	for (int currentIndex = 0; currentIndex < stringCounts.size(); currentIndex++) {
-	//		if (stringCounts.get(currentIndex) > maxCount) { // Should always be true the first time through the loop
-	//			maxCount = stringCounts.get(currentIndex);
-	//			indexHoldingMaxCount = currentIndex;
-	//		}
-	//	}
-	//	return encounteredStrings.get(indexHoldingMaxCount);
-		return "";
+		for (String currentString : elements) {
+			int index = encounteredStrings.indexOf(currentString);
+			if (index == -1) {
+				encounteredStrings.add(currentString);
+				stringCounts.add(1);
+			} else {
+				stringCounts.set(index, stringCounts.get(index) + 1);
+			}
+		}
+		
+		int indexHoldingMaxCount = 0;
+		int maxCount = 0;
+		for (int currentIndex = 0; currentIndex < stringCounts.size(); currentIndex++) {
+			if (stringCounts.get(currentIndex) > maxCount) { // Should always be true the first time through the loop
+				maxCount = stringCounts.get(currentIndex);
+				indexHoldingMaxCount = currentIndex;
+			}
+		}
+		return encounteredStrings.get(indexHoldingMaxCount);
 	}
 }
