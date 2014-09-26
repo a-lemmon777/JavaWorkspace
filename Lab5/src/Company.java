@@ -1,41 +1,33 @@
-
+// Tom Harren && Aaron Lemmon && Kristin Rachor
 public class Company {
 	
-	private int[] preferences;
-	private int currentMatch = -1;
-	private int nextProposalIndex = 0;
-	private int increment = 0;
+	private final int ID;
+	private final int[] preferences;
+	private int nextOfferIndex = 0;
+	private boolean isMatched;
 	
-	
-	public Company(int[] preferences) {
+	public Company(int ID, int[] preferences) {
+		this.ID = ID;
 		this.preferences = preferences;
 	}
 
-
-	public int getNextProposal() {
-		return preferences[nextProposalIndex];
-	}
-
-
-	public int getCurrentMatch() {
-		return currentMatch;
-	}
-
-
-	public void setCurrentMatch(int currentMatch) {
-		this.currentMatch = currentMatch;
-	}
-
-
-	public void increment() {
-		increment++;
-	}
-
-
-	public void updateNextProposalIndex() {
-		nextProposalIndex += increment;
-		increment = 0;
+	public int getID() {
+		return ID;
 	}
 	
+	public int getNextProgrammer() {
+		return preferences[nextOfferIndex];
+	}
 	
+	public void incrementNextOfferIndex() {
+		nextOfferIndex++;
+	}
+	
+	public boolean isMatched() {
+		return isMatched;
+	}
+
+	public void setMatched(boolean b) {
+		this.isMatched = b;
+	}
 }

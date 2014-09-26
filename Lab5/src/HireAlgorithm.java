@@ -1,110 +1,57 @@
+// Tom Harren && Aaron Lemmon && Kristin Rachor
 import java.util.Scanner;
 
 public class HireAlgorithm {
 	
-	private static Programmer[] allProgrammers;
-	private static Company[] allCompanies;
-	private static int n;
+	private int n;
+	private Programmer[] allProgrammers;
+	private Company[] allCompanies;
 	
-	public static void main(String[] args){
+	public HireAlgorithm(int[][] companyPrefs, int[][] programmerPrefs) {
+		n = companyPrefs.length;
+		allCompanies = new Company[n];
+		allProgrammers = new Programmer[n];
 		
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter the number of companies/programmers (or enter 0 for prestored data):");
-		n = scanner.nextInt();
-		if (n == 0) {
-			usePrestoredData();
-		} else {
-			useUserInput();
+		for (int i = 0; i < n; i++) {
+			allCompanies[i] = new Company(i, companyPrefs[i]);
 		}
-		scanner.close();
 		
+		for (int i = 0; i < n; i++) {
+			int[] rearrangedProgrammerPrefs = new int[n];
+			for (int j = 0; j < n; j++) {
+				rearrangedProgrammerPrefs[programmerPrefs[i][j]] = j;
+			}
+
+			allProgrammers[i] = new Programmer(i, rearrangedProgrammerPrefs);
+		}	
+	}
+	
+	public int[][] makePairings(int[][] companyPrefs, int[][] programmerPrefs) {
 		while (someoneNotMatched()){
-			for (int programmer = 0; programmer < n; programmer++) {
-				for (int company = 0; company < n; company++) {
-					if (allCompanies[company].getCurrentMatch() == -1){
-						if (allCompanies[company].getNextProposal() == programmer) {
-							allProgrammers[programmer].acceptBest(company);
-//							if (best == -1) {
-//								best = company;
-//							} else {
-//								best = allProgrammers[programmer].getBest(best, company);
-//							}
-//							allCompanies[company].increment();
+			for (Programmer programmer : allProgrammers) {
+				for (Company company : allCompanies) {
+					if (!company.isMatched()){
+						if (company.getNextProgrammer() == programmer.getID()) {
+							programmer.considerNewCompany(company);
 						}
 					}
 				}
-//				if(best != -1){
-//					if () {
-//						
-//					}
-//					allCompanies[best].setCurrentMatch(programmer);
-//				}
-			}
-			for (Company company : allCompanies) {
-				company.updateNextProposalIndex();
 			}
 		}
 		
-		
-		for(int i = 0; i < n; i++){
-			System.out.println("Company: " + i + " is matched with programmer: " + allCompanies[i].getCurrentMatch() );
+		int[][] result = new int[n][];
+		for (Programmer programmer : allProgrammers) {
+			result[programmer.getID()] = new int[] {programmer.getID(), programmer.getEmployer().getID()};
 		}
-	
+		return result;
 	}
 
-	private static boolean someoneNotMatched() {
+	private boolean someoneNotMatched() {
 		for (Company company : allCompanies) {
-			if (company.getCurrentMatch() == -1) {
+			if (!company.isMatched()) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-	private static void useUserInput() {
-		Scanner scanner = new Scanner(System.in);
-		
-		allCompanies = new Company[n];
-		allProgrammers = new Programmer[n];
-		
-		for (int i = 0; i < n; i++) {
-			System.out.println("Give the programmer preferences of Company " + i + 
-					" (Give each number from 0 through " + (n-1) + " inclusive, putting a space between each number):");
-			int[] preferences = new int[n];
-			for (int j = 0; j < n; j++) {
-				preferences[j] = scanner.nextInt();
-			}
-			allCompanies[i] = new Company(preferences);
-			scanner.reset();
-		}
-		for (int i = 0; i < n; i++) {
-			System.out.println("Give the company preferences of Programmer " + i + 
-					" (Give each number from 0 through " + (n-1) + " inclusive, putting a space between each number):");
-			int[] preferences = new int[n];
-			for (int j = 0; j < n; j++) {
-				// 0 is placed at the index of the first number given, 0 meaning most preferred.
-				preferences[scanner.nextInt()] = j;
-			}
-			allProgrammers[i] = new Programmer(preferences);
-			scanner.reset();
-		}
-		scanner.close();
-	}
-
-	private static void usePrestoredData() {
-		n = 3;
-		allCompanies = new Company[n];
-		allProgrammers = new Programmer[n];
-		int[][] companyPrefs = {{0, 2, 1}, {2, 1, 0}, {0, 2, 1}};
-		// {{1, 2, 0}, {2, 1, 0}, {2, 0, 1}} original input
-		// Each array gets reordered, the index that contains 0 is the most preferred.
-		int[][] programmerPrefs = {{2, 0, 1}, {2, 1, 0}, {1, 2, 0}};
-		for (int i = 0; i < n; i++) {
-			allCompanies[i] = new Company(companyPrefs[i]);
-		}
-		for (int i = 0; i < n; i++) {
-			allProgrammers[i] = new Programmer(programmerPrefs[i]);
-		}
-	}
-
 }

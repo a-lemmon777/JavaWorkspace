@@ -1,24 +1,32 @@
-
+// Tom Harren && Aaron Lemmon && Kristin Rachor
 public class Programmer {
 
-	public Programmer(int[] preferences) {
+	private final int ID;
+	private final int[] preferences;
+	private Company employer;
+
+	public Programmer(int ID, int[] preferences) {
+		this.ID = ID;
 		this.preferences = preferences;
 	}
-
-	private int[] preferences;
-	private int currentMatch = -1;
-
-	public int getBest(int best, int nextProposal) {
-		return (preferences[best] < preferences[nextProposal] ? best : nextProposal);
+	
+	public int getID() {
+		return ID;
 	}
 
-	public void acceptBest(int company) {
-		// increment new guy
-		
-		// if no current, set new to current
-		// else compare them,
-		//   reject loser (set to single)
-		//   and set winner's current match to her
-		//   and set her currentMatch to winner
+	public void considerNewCompany(Company newCompany) {
+		newCompany.incrementNextOfferIndex();
+		if (employer == null) {
+			newCompany.setMatched(true);
+			employer = newCompany;
+		} else if (preferences[newCompany.getID()] < preferences[employer.getID()]) {
+			employer.setMatched(false);
+			newCompany.setMatched(true);
+			employer = newCompany;
+		}
+	}
+
+	public Company getEmployer() {
+		return employer;
 	}
 }
