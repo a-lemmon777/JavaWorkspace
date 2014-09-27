@@ -14,6 +14,11 @@ public class Programmer {
 		return ID;
 	}
 
+	/**
+	 * Checks if the new company's offer is better than the current
+	 * offer. If it is, this programmer will accept the new company's
+	 * offer and reject it's old company.
+	 */
 	public void considerNewCompany(Company newCompany) {
 		newCompany.incrementNextOfferIndex();
 		if (employer == null) {
