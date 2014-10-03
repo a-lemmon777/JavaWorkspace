@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 // Dalton Gusaas && Aaron Lemmon
 
@@ -40,10 +42,12 @@ public class Group4 {
 		sortThis = new String[n];
 		Thread.sleep(1000);
 		System.out.println(maxDigits);
+		
 		// The Algorithm
 		long startTime = System.currentTimeMillis();
 		for (int i = 0; i < numberOfLoops; i++) {
 			rawInput.toArray(sortThis); // Takes 0.557 ms for n=100,000
+			Arrays.sort(sortThis, new StringComparator());
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println(endTime - startTime);
@@ -56,5 +60,34 @@ public class Group4 {
 				writer.newLine();
 			}
 		}
+	}
+	
+	private static class StringComparator implements Comparator<String> {
+
+		@Override
+		public int compare(String str1, String str2) {
+			if (str1.length() != str2.length()) {
+				return str1.length() - str2.length();
+			}
+			
+			// only get here if the lengths are equal
+			int sum1 = sumOnes(str1);
+			int sum2 = sumOnes(str2);
+			if (sum1 != sum2) {
+				return (sum1 - sum2);
+			}
+			
+			// only get here if the sum and the length are equal
+			return str1.compareTo(str2);
+		}
+		
+		private int sumOnes(String str) {
+			int count = 0;
+			for (int i = 0; i < str.length(); ++i) {
+				count += str.charAt(i) - '0';
+			}
+			return count;
+		}
+		
 	}
 }
