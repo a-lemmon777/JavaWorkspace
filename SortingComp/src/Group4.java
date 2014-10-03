@@ -19,6 +19,8 @@ public class Group4 {
 	private static ArrayList<String> rawInput = new ArrayList<String>();
 	private static int n = 0;
 	private static String[] sortThis;
+	private static int numBuckets;
+	private static ArrayList<Integer> partitions = new ArrayList<Integer>();
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// Store command-line args
@@ -39,8 +41,12 @@ public class Group4 {
 				n++;
 			}
 		}
+		
+		partitions.add(25000);
+		partitions.add(50000);
+		partitions.add(75000);
 		sortThis = new String[n];
-		Thread.sleep(1000);
+		Thread.sleep(10);
 		System.out.println(maxDigits);
 		
 		// The Algorithm
@@ -48,6 +54,29 @@ public class Group4 {
 		for (int i = 0; i < numberOfLoops; i++) {
 			rawInput.toArray(sortThis); // Takes 0.557 ms for n=100,000
 			Arrays.sort(sortThis, new StringComparator());
+			// Counting/bucket sort by length
+			int[] countsForBuckets = new int[numBuckets];
+			for (int j = 0; j < n; j++) {
+				//countsForBuckets[partitions[j]]++;
+				
+				// j is location of element
+				// look at value at j
+				// 
+			}
+			for (int k = 0; k < numBuckets; k++) {
+				// do cumulative sum
+			}
+			for (int j = 0; j < n; j++) {
+				// copy value into its bucket
+			}
+			
+			// Radix sort for each bucket
+				// Alphabetically
+				// Sum
+				// Length
+			
+			
+			
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println(endTime - startTime);
