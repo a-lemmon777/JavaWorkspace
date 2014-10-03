@@ -15,7 +15,7 @@ public class Group4 {
 	private static double lambda;
 	private static int maxDigits = 0;
 	private static ArrayList<String> rawInput = new ArrayList<String>();
-	private static int n;
+	private static int n = 0;
 	private static String[] sortThis;
 
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -39,7 +39,7 @@ public class Group4 {
 		}
 		sortThis = new String[n];
 		Thread.sleep(1000);
-		
+		System.out.println(maxDigits);
 		// The Algorithm
 		long startTime = System.currentTimeMillis();
 		for (int i = 0; i < numberOfLoops; i++) {
