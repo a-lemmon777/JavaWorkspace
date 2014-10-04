@@ -55,20 +55,20 @@ public class Group4 {
 			rawInput.toArray(sortThis); // Takes 0.557 ms for n=100,000
 			Arrays.sort(sortThis, new StringComparator());
 			// Counting/bucket sort by length
-			int[] countsForBuckets = new int[numBuckets];
-			for (int j = 0; j < n; j++) {
-				//countsForBuckets[partitions[j]]++;
-				
-				// j is location of element
-				// look at value at j
-				// 
-			}
-			for (int k = 0; k < numBuckets; k++) {
-				// do cumulative sum
-			}
-			for (int j = 0; j < n; j++) {
-				// copy value into its bucket
-			}
+//			int[] countsForBuckets = new int[numBuckets];
+//			for (int j = 0; j < n; j++) {
+//				//countsForBuckets[partitions[j]]++;
+//				
+//				// j is location of element
+//				// look at value at j
+//				// 
+//			}
+//			for (int k = 0; k < numBuckets; k++) {
+//				// do cumulative sum
+//			}
+//			for (int j = 0; j < n; j++) {
+//				// copy value into its bucket
+//			}
 			
 			// Radix sort for each bucket
 				// Alphabetically
