@@ -18,7 +18,7 @@ public class Group4 {
 	private static int maxDigits = 0;
 	private static ArrayList<String> rawInput = new ArrayList<String>();
 	private static int n = 0;
-	private static String[] sortThis;
+	private static BigBinary[] sortThis;
 	private static int numBuckets;
 	private static ArrayList<Integer> partitions = new ArrayList<Integer>();
 
@@ -42,18 +42,28 @@ public class Group4 {
 			}
 		}
 		
-		partitions.add(25000);
-		partitions.add(50000);
-		partitions.add(75000);
-		sortThis = new String[n];
+//		partitions.add(25000);
+//		partitions.add(50000);
+//		partitions.add(75000);
+		sortThis = new BigBinary[n];
 		Thread.sleep(10);
 		System.out.println(maxDigits);
 		
 		// The Algorithm
 		long startTime = System.currentTimeMillis();
 		for (int i = 0; i < numberOfLoops; i++) {
-			rawInput.toArray(sortThis); // Takes 0.557 ms for n=100,000
-			Arrays.sort(sortThis, new StringComparator());
+//			rawInput.toArray(sortThis); // Takes 0.557 ms for n=100,000
+//			Arrays.sort(sortThis, new StringComparator());
+			
+			// Fill sortThis with BigBinaries
+			for (int j = 0; j < n; j++) {
+				sortThis[j] = new BigBinary(rawInput.get(j));
+			}
+			
+			
+			
+			
+			
 			// Counting/bucket sort by length
 //			int[] countsForBuckets = new int[numBuckets];
 //			for (int j = 0; j < n; j++) {
