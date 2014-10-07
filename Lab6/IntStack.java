@@ -1,6 +1,7 @@
+// Aaron Lemmon && Lenny Scott
+
 import java.util.ArrayList;
 import java.util.EmptyStackException;
-
 
 public class IntStack implements IntStackInterface {
 
@@ -9,8 +10,7 @@ public class IntStack implements IntStackInterface {
 	
 	@Override
 	public boolean empty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (nextIndex == 0);
 	}
 
 	@Override
@@ -22,32 +22,38 @@ public class IntStack implements IntStackInterface {
 
 	@Override
 	public int peek() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return 0;
+		if(nextIndex <= 0){
+			throw new EmptyStackException();
+		}
+		return intArray[nextIndex - 1];
 	}
 
 	@Override
 	public int pop() throws EmptyStackException {
 		nextIndex--;
+		if (nextIndex < 0) {
+			throw new EmptyStackException();
+		}
 		int popElement = intArray[nextIndex];
 		return popElement;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-
+		nextIndex = 0;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return nextIndex;
 	}
 
 	@Override
 	public IntStackInterface invert() {
-		// TODO Auto-generated method stub
+		IntStackInterface inverse = new IntStack();
+		for(int i = 0; i < nextIndex; i++) {
+			
+		}
 		return null;
 	}
 
