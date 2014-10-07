@@ -2,34 +2,31 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
 public class TestBigBinary {
 	
-
 	@Test
 	public void testAllZeros() {
-		BigBinary bb = new BigBinary("00000");
-		int[] expectedValue = {0};
+		String value = "00000";
+		BigBinary bb = new BigBinary(value);
 		int expectedSumOfOnes = 0;
-		assertArrayEquals(expectedValue, bb.getValue());
+		assertEquals(value, bb.toString());
 		assertEquals(expectedSumOfOnes, bb.getSumOfOnes());
 	}
 
 	@Test
 	public void testAllOnes() {
-		BigBinary bb = new BigBinary("11111111111111");
-		int[] expectedValue = {16383};
-		int expectedSumOfOnes = 14;
-		assertArrayEquals(expectedValue, bb.getValue());
+		String value = "111111";
+		BigBinary bb = new BigBinary(value);
+		int expectedSumOfOnes = 6;
+		assertEquals(value, bb.toString());
 		assertEquals(expectedSumOfOnes, bb.getSumOfOnes());
 	}
 	
 	@Test
-	public void testBigString() {
-		BigBinary bb = new BigBinary("1001011010110011000111001011010011010011");
-		int[] expectedValue = {Integer.parseInt("10010110", 2), Integer.parseInt("1011001100011100101101001101001", 2)};
-		int expectedSumOfOnes = 14;
-		assertArrayEquals(expectedValue, bb.getValue());
-		assertEquals(expectedSumOfOnes, bb.getSumOfOnes());
+	public void testGetValAt() {
+		BigBinary bb = new BigBinary("10010110");
+		assertEquals(6, bb.getValBefore(8,4));
+		assertEquals(9, bb.getValBefore(4,4));
+		assertEquals(0, bb.getValBefore(12, 4));
 	}
 }

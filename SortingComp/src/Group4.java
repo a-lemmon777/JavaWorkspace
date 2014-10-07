@@ -51,16 +51,37 @@ public class Group4 {
 		
 		// The Algorithm
 		long startTime = System.currentTimeMillis();
-		for (int i = 0; i < numberOfLoops; i++) {
+		for (int loop = 0; loop < numberOfLoops; loop++) {
 //			rawInput.toArray(sortThis); // Takes 0.557 ms for n=100,000
 //			Arrays.sort(sortThis, new StringComparator());
 			
 			// Fill sortThis with BigBinaries
-			for (int j = 0; j < n; j++) {
-				sortThis[j] = new BigBinary(rawInput.get(j));
+			for (int i = 0; i < n; i++) {
+				sortThis[i] = new BigBinary(rawInput.get(i));
 			}
 			
+			// radix sort alphabetically
+			int chunkSize = 1;
+			int possibleVals = 2;
+			for (int i = maxDigits; i > 0; i -= chunkSize) {
+				int[] counts = new int[possibleVals];
+				for (int j = 0; j < n; j++) {
+					counts[sortThis[j].getValBefore(i, chunkSize)]++;
+				}
+				for (int j = 1; j < possibleVals; j++) {
+					counts[j] += counts[j - 1]; 
+				}
+				BigBinary[] temp = new BigBinary[n];
+				for (int j = n - 1; j >= 0; j--) {
+					temp[counts[sortThis[j].getValBefore(i, chunkSize)] - 1] = sortThis[j];
+					counts[sortThis[j].getValBefore(i, chunkSize)]--;
+				}
+				sortThis = temp;
+				
+			}
+			// counting sort on sumOfOnes
 			
+			// counting sort on length
 			
 			
 			
@@ -94,8 +115,8 @@ public class Group4 {
 		// Write out the results
 		Path outFile = Paths.get(outputFile);
 		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
-			for (String line : sortThis) {
-				writer.write(line);
+			for (BigBinary line : sortThis) {
+				writer.write(line.toString());
 				writer.newLine();
 			}
 		}
