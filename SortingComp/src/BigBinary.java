@@ -9,12 +9,18 @@ public class BigBinary {
 	public BigBinary(String input) {
 		binaryString = input;
 		length = input.length();
+		for (int i = 0; i < input.length(); i++) {
+		sumOfOnes += input.charAt(i) - '0';
+		
+		
+		
 		// 32 bits per int
-		int chunks = (length + 31)/32; // Basically divides by 32 and rounds up
-		for (int i = 0; i < chunks; i++) {
-			int endIndex = Math.min(i*32 + 32, length);
-			String subString = binaryString.substring(i*32, endIndex);
-			sumOfOnes += Integer.bitCount(Integer.parseUnsignedInt(subString, 2));
+		
+//		int chunks = (length + 31)/32; // Basically divides by 32 and rounds up
+//		for (int i = 0; i < chunks; i++) {
+//			int endIndex = Math.min(i*32 + 32, length);
+//			String subString = binaryString.substring(i*32, endIndex);
+//			sumOfOnes += Integer.bitCount(Integer.parseUnsignedInt(subString, 2));
 		}
 		
 		

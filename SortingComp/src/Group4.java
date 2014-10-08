@@ -15,13 +15,22 @@ public class Group4 {
 	private static String outputFile;
 	private static int numberOfLoops;
 	private static double lambda;
-	private static int maxDigits = 0;
+	private static int actualMaxLength = 0;
 	private static ArrayList<String> rawInput = new ArrayList<String>();
 	private static int n = 0;
-	//private static BigBinary[] sortThis;
-	private static String[] sortThis;
-	private static int chunkSize;
+	private static BigBinary[] sortThis;
+//	private static String[] sortThis;
+//	private static int chunkSize;
 	private static int possibleVals;
+	private static double[] bucketDeterminers = {0.236, 0.3425, 0.479, 0.783};
+	private static int[] maxLength = new int[5];
+	private static int[] allDigits = new int[5];
+	private static int[] avgNumDig = new int[5];
+	private static int[] sizeOfPart = new int[5];
+	private static int[] startIndex = new int[5];
+	private static int[] endIndex = new int[5];
+	private static int[] chunkSize = new int[5];
+
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// Store command-line args
@@ -33,21 +42,54 @@ public class Group4 {
 		Path inFile = Paths.get(inputFile);
 		try (BufferedReader reader = Files.newBufferedReader(inFile)) {
 			lambda = Double.parseDouble(reader.readLine());
+			int maxLengthGuess = (int) lambda * 45;
+			for (int i = 0; i < bucketDeterminers.length; i++) {
+				maxLength[i] = (int)(maxLengthGuess * bucketDeterminers[i]) - 1;
+			}
 			String line = null;
-			int allDigits = 0;
+			
 			while ((line = reader.readLine()) != null) {
-				if (line.length() > maxDigits) {
-					maxDigits = line.length();
+				if (line.length() > actualMaxLength) {
+					actualMaxLength = line.length();
 				}
-				allDigits += line.length();
+				if (line.length() < maxLength[0]) {
+					sizeOfPart[0]++;
+					allDigits[0]++;
+				} else if (line.length() < maxLength[1]) {
+					sizeOfPart[1]++;
+					allDigits[1]++;
+				} else if (line.length() < maxLength[2]) {
+					sizeOfPart[2]++;
+					allDigits[2]++;
+				} else if (line.length() < maxLength[3]) {
+					sizeOfPart[3]++;
+					allDigits[3]++;
+				} else {
+					sizeOfPart[4]++;
+					allDigits[4]++;
+				}
 				rawInput.add(line);
 				n++;
 			}
-			int avgNumDigits = (int) (allDigits / n);
+			maxLength[4] = actualMaxLength;
+			for (int i = 0; i < 5; i++) {
+				avgNumDig[i] = (int) (allDigits[i] / sizeOfPart[i]);
+				int logBaseTwoOfSize = logBaseTwo(sizeOfPart[i]);
+				chunkSize[i] = (avgNumDig[i] < logBaseTwoOfSize ? avgNumDig[i] : logBaseTwoOfSize);
+			}
+			startIndex[0] = 0;
+			for (int i = 1; i < 5; i++) {
+				startIndex[i] = startIndex[i - 1] + sizeOfPart[i - 1];
+			}
+			endIndex[4] = n - 1;
+			for (int i = 0; i < 4; i++) {
+				endIndex[i] = startIndex[i+1] - 1;
+			}
+//			int avgNumDigits = (int) (allDigits / n);
 //			System.out.println("avgNumDigits: " + avgNumDigits);
-			int logBaseTwoOfN = logBaseTwo(n);
+//			int logBaseTwoOfN = logBaseTwo(n);
 //			System.out.println("logBaseTwo of n: " + logBaseTwoOfN);
-			chunkSize = (avgNumDigits < logBaseTwoOfN ? avgNumDigits : logBaseTwoOfN);
+//			chunkSize = (avgNumDigits < logBaseTwoOfN ? avgNumDigits : logBaseTwoOfN);
 //			System.out.println("chunkSize: " + chunkSize);
 			possibleVals = (int) Math.pow(2, chunkSize);
 			
@@ -56,8 +98,8 @@ public class Group4 {
 			
 		}
 
-		//sortThis = new BigBinary[n];
-		sortThis = new String[n];
+		sortThis = new BigBinary[n];
+//		sortThis = new String[n];
 		Thread.sleep(10);
 //		System.out.println("max digits: " + maxDigits);
 
@@ -67,9 +109,9 @@ public class Group4 {
 		
 		
 		for (int loop = 0; loop < numberOfLoops; loop++) {
-			sortThis = rawInput.toArray(sortThis);
-			Arrays.sort(sortThis, new StringComparator());
-	/*
+//			sortThis = rawInput.toArray(sortThis);
+//			Arrays.sort(sortThis, new StringComparator());
+	
 			// Fill sortThis with BigBinaries
 			for (int i = 0; i < n; i++) {
 				sortThis[i] = new BigBinary(rawInput.get(i));
@@ -77,7 +119,7 @@ public class Group4 {
 			long afterCopy = System.currentTimeMillis();
 			System.out.println(afterCopy - startTime);
 			// radix sort alphabetically
-			for (int i = 0; i < maxDigits; i += chunkSize) {
+			for (int i = 0; i < actualMaxLength; i += chunkSize) {
 				int[] counts = new int[possibleVals];
 				for (int j = 0; j < sortThis.length; j++) {
 					counts[sortThis[j].getValBefore(i, chunkSize)]++;
@@ -96,7 +138,7 @@ public class Group4 {
 			long afterRadix = System.currentTimeMillis();
 			System.out.println(afterRadix - afterCopy);
 			// counting sort on sumOfOnes
-			int[] count = new int[maxDigits + 1]; // change to maxOnes + 1
+			int[] count = new int[actualMaxLength + 1]; // change to maxOnes + 1
 			for (int j = 0; j < sortThis.length; j++) {
 				count[sortThis[j].getSumOfOnes()]++;
 			}
@@ -113,7 +155,7 @@ public class Group4 {
 			long afterSumOfOnes = System.currentTimeMillis();
 			System.out.println(afterSumOfOnes - afterRadix);
 			// counting sort on length
-			int[] counts = new int[maxDigits + 1];
+			int[] counts = new int[actualMaxLength + 1];
 			for (int j = 0; j < sortThis.length; j++) {
 				counts[sortThis[j].getLength()]++;
 			}
@@ -129,7 +171,7 @@ public class Group4 {
 
 			long afterLengthSort = System.currentTimeMillis();
 			System.out.println(afterLengthSort - afterSumOfOnes);
-			*/
+			
 		}
 		
 		long endTime = System.currentTimeMillis();
@@ -139,7 +181,7 @@ public class Group4 {
 		Path outFile = Paths.get(outputFile);
 		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
 			//for (BigBinary line : sortThis) {
-			for (String line : sortThis) { 
+			for (BigBinary line : sortThis) { 
 				writer.write(line.toString());
 				writer.newLine();
 			}
