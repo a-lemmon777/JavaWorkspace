@@ -29,4 +29,19 @@ public class TestBigBinary {
 		assertEquals(9, bb.getValBefore(4,4));
 		assertEquals(0, bb.getValBefore(12, 4));
 	}
+	
+	@Test
+	public void testName() {
+		System.out.println(Integer.parseUnsignedInt("1100", 2));
+		System.out.println(Integer.parseUnsignedInt("0011", 2));
+		System.out.println(Integer.parseUnsignedInt("1110", 2));
+		System.out.println("Hello".substring(0, 3));
+		System.out.println("Hello".substring(2, 5));
+
+	}
+	
+	@Test
+	public void testName2() {
+		System.out.println(Math.log(2));
+	}
 }
