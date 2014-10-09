@@ -1,4 +1,4 @@
-// Dalton Gus
+// Dalton Gusaas && Aaron Lemmon
 public class BigBinary {
 //	
 	private int[] value;
