@@ -115,7 +115,7 @@ public class Group4 {
 		
 		for (int loop = 0; loop < numberOfLoops; loop++) {
 			sortThis = rawInput.toArray(sortThis);
-			Arrays.sort(sortThis, new StringComparator());
+//			Arrays.sort(sortThis, new StringComparator());
 //	
 //			// Fill sortThis with BigBinaries
 //			for (int i = rawInput.size() - 1; i >= 0; i--) {

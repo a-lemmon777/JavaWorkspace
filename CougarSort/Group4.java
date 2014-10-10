@@ -52,8 +52,9 @@ public class Group4 {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 
-			Arrays.sort(data, new LengthComparator());
+//			Arrays.sort(data, new LengthComparator());
 //			quickSort(data, 0, data.length - 1, new LengthComparator());
+			quickSort(data, 0, data.length - 1, new EverythingComparator());
 //			Arrays.sort(data, new SumAndAlphabeticalComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
 //			insertionSort(data, 0, data.length, new AlphabeticalComparator());
