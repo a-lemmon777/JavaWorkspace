@@ -48,15 +48,20 @@ public class Group4 {
 
 		// Algorithm
 		for (int loop = 0; loop < numberOfLoops; loop++) {
-			for (int i = 0; i < rawInput.size(); i++) {
+			for (int i = rawInput.size() - 1; i >= 0; i--) {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 
+			
+//			compareAll(data, new LengthComparator());
+//			compareAll(data, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
 			quickSort(data, 0, data.length - 1, new AlphabeticalComparator());
+			Arrays.sort(data, new LengthAndSumComparator());
+//			quickSort(data, 0, data.length - 1, new SumOfOnesComparator());
 //			quickSort(data, 0, data.length - 1, new LengthComparator());
 //			quickSort(data, 0, data.length - 1, new EverythingComparator());
-//			Arrays.sort(data, new SumAndAlphabeticalComparator());
+//			Arrays.sort(data, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
 //			insertionSort(data, 0, data.length, new AlphabeticalComparator());
 //			Arrays.sort(data, new SumOfOnesComparator());
@@ -78,6 +83,15 @@ public class Group4 {
 		}
 	}
 	
+	// Just used for testing, makes n! comparisons
+	private static <T> void compareAll(T[] array, Comparator<T> comparator) {
+		for (int i = 0; i < array.length - 1; i++) {
+			for (int j = i + 1; j < array.length; j++) {
+				int comparison = comparator.compare(array[i], array[j]);
+			}
+		}
+	}
+
 	// endIndex is inclusive
 	private static <T> void quickSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
 		if (startIndex < endIndex) {
@@ -116,4 +130,6 @@ public class Group4 {
 			array[i + 1] = key;
 		}
 	}
+	
+	
 }

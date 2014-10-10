@@ -7,7 +7,8 @@ public class LengthComparator implements Comparator<EnhancedString>{
 
 	@Override
 	public int compare(EnhancedString o1, EnhancedString o2) {
-		return o1.binaryString.length() - o2.binaryString.length();
+//		return o1.binaryString.length() - o2.binaryString.length();
+		return o1.length - o2.length;
 	}
 }
 
