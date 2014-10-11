@@ -22,7 +22,6 @@ public class Group4 {
 
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		// TODO Auto-generated method stub
 
 		// Store command-line args
 		inputFile = args[0];
@@ -52,12 +51,13 @@ public class Group4 {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 
-			
+
+			quickSortFat(data, 0, data.length - 1, new EverythingComparator());
 //			compareAll(data, new LengthComparator());
 //			compareAll(data, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
-			quickSort(data, 0, data.length - 1, new AlphabeticalComparator());
-			Arrays.sort(data, new LengthAndSumComparator());
+//			quickSort(data, 0, data.length - 1, new AlphabeticalComparator());
+//			Arrays.sort(data, new LengthAndSumComparator());
 //			quickSort(data, 0, data.length - 1, new SumOfOnesComparator());
 //			quickSort(data, 0, data.length - 1, new LengthComparator());
 //			quickSort(data, 0, data.length - 1, new EverythingComparator());
@@ -68,12 +68,12 @@ public class Group4 {
 //			insertionSort(data, 0, data.length, new SumOfOnesComparator());
 //			Arrays.sort(data, new LengthComparator());
 //			insertionSort(data, 0, data.length, new LengthComparator());
-			
+
 		}
-		
+
 		long endTime = System.currentTimeMillis();
 		System.out.println(endTime - startTime);
-		
+
 		Path outFile = Paths.get(outputFile);
 		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
 			for (EnhancedString line : data) {
@@ -82,7 +82,7 @@ public class Group4 {
 			}
 		}
 	}
-	
+
 	// Just used for testing, makes n! comparisons
 	private static <T> void compareAll(T[] array, Comparator<T> comparator) {
 		for (int i = 0; i < array.length - 1; i++) {
@@ -100,7 +100,7 @@ public class Group4 {
 			quickSort(array, pivot + 1, endIndex, comparator);
 		}
 	}
-	
+
 	private static <T> int partition(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
 		T key = array[endIndex];
 		int i = startIndex - 1;
@@ -118,6 +118,42 @@ public class Group4 {
 		return i + 1;
 	}
 
+	// endIndex is inclusive
+	private static <T> void quickSortFat(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
+		if (startIndex < endIndex) {
+			int pivot = endIndex; // could chose a different pivot
+			int[] leftAndRight = partitionFat(array, pivot, startIndex, endIndex, comparator);
+			quickSortFat(array, startIndex, leftAndRight[0], comparator);
+			quickSortFat(array, leftAndRight[1], endIndex, comparator);
+		}
+	}
+
+	// Assumes the pivot is the last element
+	private static <T> int[] partitionFat(T[] array, int pivot, int startIndex, int endIndex, Comparator<T> comparator) {
+		T key = array[pivot];
+		int i = startIndex;
+		int lessThan = startIndex;
+		int greaterThan = endIndex - 1;
+		int comparison = comparator.compare(array[i], key);
+		while (i <= greaterThan) {
+			if (comparison < 0) {
+				T temp = array[lessThan];
+				array[lessThan++] = array[i];
+//				array[i++] = temp;
+//				lessThan++; // These were put in above
+				i++;
+			} else if (comparison > 0) {
+				T temp = array[i];
+				array[i] = array[greaterThan];
+				array[greaterThan--] = temp;
+//				greaterThan--; // Put in above
+			} else {
+				i++;
+			}
+		}
+		return new int[] {lessThan, greaterThan};
+	}
+
 	// endIndex is exclusive
 	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
 		for (int j = startIndex + 1; j < endIndex; j++) {
@@ -130,6 +166,6 @@ public class Group4 {
 			array[i + 1] = key;
 		}
 	}
-	
-	
+
+
 }
