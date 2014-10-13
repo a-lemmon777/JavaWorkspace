@@ -47,12 +47,34 @@ public class Group4 {
 
 		// Algorithm
 		for (int loop = 0; loop < numberOfLoops; loop++) {
+			boolean test = false;
+			String[] test1;
+//			boolean otherThing;
+//			String[] thing = {"hi", "there", "you"};
+////			String other = "moose";
+//			for (int i = 1000000000; i >= 0; i--) {
+//				test = i < 6;
+//				thing[1] = other;
+//				other = thing[1];
+//			}
+//			otherThing = test;
+//			test = otherThing;
 			for (int i = rawInput.size() - 1; i >= 0; i--) {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 
-
-			quickSortFat(data, 0, data.length - 1, new EverythingComparator());
+//			for (int i = 0; i < data.length - 1; i++) {
+//				test1 = new String[i];
+//				
+//				for (int j = i + 1; j < data.length; j++) {
+//					test = i < j;
+//					EnhancedString temp = data[i];
+//					data[i] = data[j];
+//					data[j] = temp;
+//				}
+//			}
+			EnhancedString[] auxiliary = new EnhancedString[data.length];
+//			sedgeMergeSort(data, auxiliary, 0, data.length - 1, new EverythingComparator());
 //			compareAll(data, new LengthComparator());
 //			compareAll(data, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
@@ -68,20 +90,45 @@ public class Group4 {
 //			insertionSort(data, 0, data.length, new SumOfOnesComparator());
 //			Arrays.sort(data, new LengthComparator());
 //			insertionSort(data, 0, data.length, new LengthComparator());
-
 		}
-
 		long endTime = System.currentTimeMillis();
 		System.out.println(endTime - startTime);
-
-		Path outFile = Paths.get(outputFile);
-		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
-			for (EnhancedString line : data) {
-				writer.write(line.binaryString);
-				writer.newLine();
-			}
-		}
 	}
+
+
+//	private static void sedgeMergeSort(EnhancedString[] array, EnhancedString[] auxiliary, int startIndex, int endIndex) {
+//		if (endIndex <= startIndex) {
+//			return;
+//		}
+//		int midIndex = (startIndex + endIndex) / 2;
+//		sedgeMergeSort(auxiliary, array, startIndex, midIndex);
+//		sedgeMergeSort(auxiliary, array, midIndex + 1, endIndex);
+//		sedgeMerge(array, auxiliary, startIndex, midIndex, endIndex);
+//
+//	}
+
+
+//		Path outFile = Paths.get(outputFile);
+//		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
+//			for (EnhancedString line : data) {
+//				writer.write(line.binaryString);
+//				writer.newLine();
+//			}
+//		}
+	
+
+//	private static void sedgeMerge(EnhancedString[] array, EnhancedString[] auxiliary, int startIndex, int midIndex, int endIndex) {
+//		int i = startIndex;
+//		int j = midIndex + 1;
+//		for (int k = startIndex; k <= endIndex; k++) {
+//			if (i > midIndex) {
+//				auxiliary[k] = array[j++];
+//			} else if (j > endIndex) {
+//				auxiliary[k] = array[i++];
+//			} else if ()
+//		}
+//	}
+
 
 	// Just used for testing, makes n! comparisons
 	private static <T> void compareAll(T[] array, Comparator<T> comparator) {
@@ -118,42 +165,6 @@ public class Group4 {
 		return i + 1;
 	}
 
-	// endIndex is inclusive
-	private static <T> void quickSortFat(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
-		if (startIndex < endIndex) {
-			int pivot = endIndex; // could chose a different pivot
-			int[] leftAndRight = partitionFat(array, pivot, startIndex, endIndex, comparator);
-			quickSortFat(array, startIndex, leftAndRight[0], comparator);
-			quickSortFat(array, leftAndRight[1], endIndex, comparator);
-		}
-	}
-
-	// Assumes the pivot is the last element
-	private static <T> int[] partitionFat(T[] array, int pivot, int startIndex, int endIndex, Comparator<T> comparator) {
-		T key = array[pivot];
-		int i = startIndex;
-		int lessThan = startIndex;
-		int greaterThan = endIndex - 1;
-		int comparison = comparator.compare(array[i], key);
-		while (i <= greaterThan) {
-			if (comparison < 0) {
-				T temp = array[lessThan];
-				array[lessThan++] = array[i];
-//				array[i++] = temp;
-//				lessThan++; // These were put in above
-				i++;
-			} else if (comparison > 0) {
-				T temp = array[i];
-				array[i] = array[greaterThan];
-				array[greaterThan--] = temp;
-//				greaterThan--; // Put in above
-			} else {
-				i++;
-			}
-		}
-		return new int[] {lessThan, greaterThan};
-	}
-
 	// endIndex is exclusive
 	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
 		for (int j = startIndex + 1; j < endIndex; j++) {
@@ -166,6 +177,4 @@ public class Group4 {
 			array[i + 1] = key;
 		}
 	}
-
-
 }
