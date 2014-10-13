@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -34,7 +33,6 @@ public class Group4 {
 			lambda = Double.parseDouble(reader.readLine());
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-
 				rawInput.add(line);
 				n++;
 			}
@@ -47,33 +45,15 @@ public class Group4 {
 
 		// Algorithm
 		for (int loop = 0; loop < numberOfLoops; loop++) {
-			boolean test = false;
-			String[] test1;
-//			boolean otherThing;
-//			String[] thing = {"hi", "there", "you"};
-////			String other = "moose";
-//			for (int i = 1000000000; i >= 0; i--) {
-//				test = i < 6;
-//				thing[1] = other;
-//				other = thing[1];
-//			}
-//			otherThing = test;
-//			test = otherThing;
 			for (int i = rawInput.size() - 1; i >= 0; i--) {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
-
-//			for (int i = 0; i < data.length - 1; i++) {
-//				test1 = new String[i];
-//				
-//				for (int j = i + 1; j < data.length; j++) {
-//					test = i < j;
-//					EnhancedString temp = data[i];
-//					data[i] = data[j];
-//					data[j] = temp;
-//				}
-//			}
-			EnhancedString[] auxiliary = new EnhancedString[data.length];
+			Arrays.sort(data);
+//			Arrays.sort(data, new EverythingComparator());
+//			QuickSort.sort(data, new EverythingComparator());
+			
+			
+			
 //			sedgeMergeSort(data, auxiliary, 0, data.length - 1, new EverythingComparator());
 //			compareAll(data, new LengthComparator());
 //			compareAll(data, new EverythingComparator());
@@ -83,7 +63,6 @@ public class Group4 {
 //			quickSort(data, 0, data.length - 1, new SumOfOnesComparator());
 //			quickSort(data, 0, data.length - 1, new LengthComparator());
 //			quickSort(data, 0, data.length - 1, new EverythingComparator());
-//			Arrays.sort(data, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
 //			insertionSort(data, 0, data.length, new AlphabeticalComparator());
 //			Arrays.sort(data, new SumOfOnesComparator());
@@ -93,9 +72,19 @@ public class Group4 {
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println(endTime - startTime);
+		Path outFile = Paths.get(outputFile);
+		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
+			for (EnhancedString line : data) {
+				writer.write(line.binaryString);
+				writer.newLine();
+			}
+		}
 	}
 
 
+
+
+	
 //	private static void sedgeMergeSort(EnhancedString[] array, EnhancedString[] auxiliary, int startIndex, int endIndex) {
 //		if (endIndex <= startIndex) {
 //			return;
@@ -106,16 +95,6 @@ public class Group4 {
 //		sedgeMerge(array, auxiliary, startIndex, midIndex, endIndex);
 //
 //	}
-
-
-//		Path outFile = Paths.get(outputFile);
-//		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
-//			for (EnhancedString line : data) {
-//				writer.write(line.binaryString);
-//				writer.newLine();
-//			}
-//		}
-	
 
 //	private static void sedgeMerge(EnhancedString[] array, EnhancedString[] auxiliary, int startIndex, int midIndex, int endIndex) {
 //		int i = startIndex;
@@ -139,31 +118,7 @@ public class Group4 {
 		}
 	}
 
-	// endIndex is inclusive
-	private static <T> void quickSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
-		if (startIndex < endIndex) {
-			int pivot = partition(array, startIndex, endIndex, comparator);
-			quickSort(array, startIndex, pivot - 1, comparator);
-			quickSort(array, pivot + 1, endIndex, comparator);
-		}
-	}
 
-	private static <T> int partition(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
-		T key = array[endIndex];
-		int i = startIndex - 1;
-		for (int j = startIndex; j < endIndex; j++) {
-			if (comparator.compare(array[j], key) <= 0) {
-				i++;
-				T temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-			}
-		}
-		T temp = array[i + 1];
-		array[i + 1] = array[endIndex];
-		array[endIndex] = temp;
-		return i + 1;
-	}
 
 	// endIndex is exclusive
 	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
