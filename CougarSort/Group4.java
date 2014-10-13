@@ -48,7 +48,8 @@ public class Group4 {
 			for (int i = rawInput.size() - 1; i >= 0; i--) {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
-			Arrays.sort(data);
+			Arrays.sort(data, new EverythingComparator());
+//			Arrays.sort(data, EnhancedString.EVERYTHING_COMPARATOR);
 //			Arrays.sort(data, new EverythingComparator());
 //			QuickSort.sort(data, new EverythingComparator());
 			
@@ -81,7 +82,30 @@ public class Group4 {
 		}
 	}
 
-
+//	public static <T> void quickSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
+//		if (startIndex < endIndex) {
+//			int pivot = partition(array, startIndex, endIndex, comparator);
+//			quickSort(array, startIndex, pivot - 1, comparator);
+//			quickSort(array, pivot + 1, endIndex, comparator);
+//		}
+//	}
+//
+//	private static <T> int partition(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
+//		T key = array[endIndex];
+//		int i = startIndex - 1;
+//		for (int j = startIndex; j < endIndex; j++) {
+//			if (comparator.compare(array[j], key) <= 0) {
+//				i++;
+//				T temp = array[i];
+//				array[i] = array[j];
+//				array[j] = temp;
+//			}
+//		}
+//		T temp = array[i + 1];
+//		array[i + 1] = array[endIndex];
+//		array[endIndex] = temp;
+//		return i + 1;
+//	}
 
 
 	
@@ -110,26 +134,26 @@ public class Group4 {
 
 
 	// Just used for testing, makes n! comparisons
-	private static <T> void compareAll(T[] array, Comparator<T> comparator) {
-		for (int i = 0; i < array.length - 1; i++) {
-			for (int j = i + 1; j < array.length; j++) {
-				int comparison = comparator.compare(array[i], array[j]);
-			}
-		}
-	}
+//	private static <T> void compareAll(T[] array, Comparator<T> comparator) {
+//		for (int i = 0; i < array.length - 1; i++) {
+//			for (int j = i + 1; j < array.length; j++) {
+//				int comparison = comparator.compare(array[i], array[j]);
+//			}
+//		}
+//	}
 
 
 
 	// endIndex is exclusive
-	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
-		for (int j = startIndex + 1; j < endIndex; j++) {
-			T key = array[j];
-			int i = j - 1;
-			while (i > startIndex - 1 && comparator.compare(array[i], key) > 0) {
-				array[i + 1] = array[i];
-				i--;
-			}
-			array[i + 1] = key;
-		}
-	}
+//	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
+//		for (int j = startIndex + 1; j < endIndex; j++) {
+//			T key = array[j];
+//			int i = j - 1;
+//			while (i > startIndex - 1 && comparator.compare(array[i], key) > 0) {
+//				array[i + 1] = array[i];
+//				i--;
+//			}
+//			array[i + 1] = key;
+//		}
+//	}
 }
