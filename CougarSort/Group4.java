@@ -48,9 +48,8 @@ public class Group4 {
 			for (int i = rawInput.size() - 1; i >= 0; i--) {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
-			Arrays.sort(data, new EverythingComparator());
-//			Arrays.sort(data, EnhancedString.EVERYTHING_COMPARATOR);
 //			Arrays.sort(data, new EverythingComparator());
+			mergeSort(data, 0, data.length - 1, new EverythingComparator());
 //			QuickSort.sort(data, new EverythingComparator());
 			
 			
@@ -78,6 +77,40 @@ public class Group4 {
 			for (EnhancedString line : data) {
 				writer.write(line.binaryString);
 				writer.newLine();
+			}
+		}
+	}
+
+
+	private static <T> void mergeSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+		T[] temp = array.clone();
+		mergeSort(array, temp, lowIndex, highIndex, comparator);
+	}
+
+
+	private static <T> void mergeSort(T[] array, T[] temp, int lowIndex, int highIndex, Comparator<T> comparator) {
+		if (highIndex <= lowIndex) {
+			return;
+		}
+		int midIndex = (lowIndex + highIndex) / 2;
+		mergeSort(temp, array, lowIndex, midIndex, comparator);
+		mergeSort(temp, array, midIndex + 1, highIndex, comparator);
+		merge(array, temp, lowIndex, midIndex, highIndex, comparator);
+	}
+
+
+	private static <T> void merge(T[] array, T[] temp, int lowIndex, int midIndex, int highIndex, Comparator<T> comparator) {
+		int i = lowIndex;
+		int j = midIndex + 1;
+		for (int k = lowIndex; k <= highIndex; k++) {
+			if (i > midIndex) {
+				array[k] = temp[j++];
+			} else if (j > highIndex) {
+				array[k] = temp[i++]; 
+			} else if (comparator.compare(temp[j], temp[i]) < 0) {
+				array[k] = temp[j++];
+			} else {
+				array[k] = temp[i++]; 
 			}
 		}
 	}
