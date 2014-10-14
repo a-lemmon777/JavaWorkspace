@@ -50,6 +50,7 @@ public class Group4 {
 			}
 //			Arrays.sort(data, new EverythingComparator());
 			mergeSort(data, 0, data.length - 1, new EverythingComparator());
+//			insertionSort(data, 0, data.length, new EverythingComparator());
 //			QuickSort.sort(data, new EverythingComparator());
 			
 			
@@ -89,6 +90,11 @@ public class Group4 {
 
 
 	private static <T> void mergeSort(T[] array, T[] temp, int lowIndex, int highIndex, Comparator<T> comparator) {
+		/* Doesn't really make it faster */
+//		if (highIndex <= lowIndex + 12) {
+//			insertionSort(array, lowIndex, highIndex + 1, comparator);
+//			return;
+//		}
 		if (highIndex <= lowIndex) {
 			return;
 		}
@@ -178,15 +184,14 @@ public class Group4 {
 
 
 	// endIndex is exclusive
-//	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
-//		for (int j = startIndex + 1; j < endIndex; j++) {
-//			T key = array[j];
-//			int i = j - 1;
-//			while (i > startIndex - 1 && comparator.compare(array[i], key) > 0) {
-//				array[i + 1] = array[i];
-//				i--;
-//			}
-//			array[i + 1] = key;
-//		}
-//	}
+	public static <T> void insertionSort(T[] array, int startIndex, int endIndex, Comparator<T> comparator) {
+		for (int j = startIndex + 1; j < endIndex; j++) {
+			T key = array[j];
+			int i = j - 1;
+			while (i > startIndex - 1 && comparator.compare(array[i], key) > 0) {
+				array[i + 1] = array[i--];
+			}
+			array[i + 1] = key;
+		}
+	}
 }
