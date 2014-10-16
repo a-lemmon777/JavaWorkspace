@@ -49,14 +49,14 @@ public class Group4 {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 			
-			MSDsort(data);
-			Arrays.sort(data, new LengthAndSumComparator());
+//			MSDsort(data);
+//			Arrays.sort(data, new LengthAndSumComparator());
 //			mergeSort(data, 0, data.length - 1, new LengthAndSumComparator());
 //			quick3Sort(data, 0, data.length - 1, new EverythingComparator());
 //			quickSort2(data, 0, data.length - 1, new EverythingComparator());
 //			insertionSort(data, 0, data.length, new EverythingComparator());
 //			Arrays.sort(data, new EverythingComparator());
-//			mergeSort(data, 0, data.length - 1, new EverythingComparator());
+			mergeSort(data, 0, data.length - 1, new EverythingComparator());
 //			bottomUpMergeSort(data, 0, data.length, new EverythingComparator());
 //			insertionSort(data, 0, data.length, new EverythingComparator());
 			
