@@ -52,7 +52,7 @@ public class Group4 {
 //			MSDsort(data);
 //			Arrays.sort(data, new LengthAndSumComparator());
 //			mergeSort(data, 0, data.length - 1, new LengthAndSumComparator());
-//			quick3Sort(data, 0, data.length - 1, new EverythingComparator());
+			quick3Sort(data, 0, data.length - 1, new EverythingComparator());
 //			quickSort2(data, 0, data.length - 1, new EverythingComparator());
 //			insertionSort(data, 0, data.length, new EverythingComparator());
 //			Arrays.sort(data, new EverythingComparator());
@@ -68,7 +68,7 @@ public class Group4 {
 //			Arrays.sort(data, new LengthAndSumComparator());
 //			quickSort(data, 0, data.length - 1, new SumOfOnesComparator());
 //			quickSort(data, 0, data.length - 1, new LengthComparator());
-			quickSort(data, 0, data.length - 1, new EverythingComparator());
+//			quickSort(data, 0, data.length - 1, new EverythingComparator());
 //			insertionSort(data, 0, data.length, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
 //			insertionSort(data, 0, data.length, new AlphabeticalComparator());
@@ -89,43 +89,8 @@ public class Group4 {
 	}
 
 
-	private static void MSDsort(EnhancedString[] array) {
-		int size = array.length;
-		EnhancedString[] auxiliary = new EnhancedString[size];
-		MSDsort(array, auxiliary, 0, size - 1, 0);
-	}
-
-
-	private static void MSDsort(EnhancedString[] array, EnhancedString[] auxiliary, int lowIndex, int highIndex, int digit) {
-		if (lowIndex < highIndex) {
-			int[] count = new int[4]; // 2 possible values + 2
-			for (int i = lowIndex; i <= highIndex; i++) {
-				count[charAt(array[i], digit) + 2]++;
-			}
-			for (int r = 0; r < 3; r++) { // r < 2 possible values + 1
-				count[r + 1] += count[r];
-			}
-			for (int i = lowIndex; i <= highIndex; i++) {
-				auxiliary[count[charAt(array[i], digit) + 1]++] = array[i];
-			}
-			for (int i = lowIndex; i <= highIndex; i++) {
-				array[i] = auxiliary[i - lowIndex]; 
-			}
-			
-			for (int r = 0; r < 2; r++) { // r < 2 since there are 2 possible values
-				MSDsort(array, auxiliary, lowIndex + count[r], lowIndex + count[r + 1] - 1, digit + 1);
-			}
-		}
-	}
-
-
-	private static int charAt(EnhancedString string, int digit) {
-		return (digit < string.length ? string.binaryString.charAt(digit) - '0' : -1);
-	}
-
-
 	private static <T> void quick3Sort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
-		if (highIndex > lowIndex + 12) { // +12 or +20
+		if (highIndex > lowIndex) { // +12 or +20
 			/* I'm not sure if this makes it faster */
 			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
 			T temporary = array[lowIndex];
@@ -152,17 +117,6 @@ public class Group4 {
 			
 			quick3Sort(array, lowIndex, lesserIndex - 1, comparator);
 			quick3Sort(array, greaterIndex + 1, highIndex, comparator);
-		}
-	}
-
-
-	// highIndex is exclusive
-	private static <T> void bottomUpMergeSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
-		for (int size = 1; size < highIndex; size += size) {
-			T[] temp = array.clone();
-			for (int start = lowIndex; start < highIndex - size; start += (size + size)) {
-				merge(array, temp, start, start + size - 1, Math.min(start + size + size - 1, highIndex - 1), comparator);
-			}
 		}
 	}
 
@@ -209,10 +163,10 @@ public class Group4 {
 	// endIndex is inclusive
 	private static <T> void quickSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
 		if (lowIndex < highIndex) {  // -12 and -20 seems good
-//			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
-//			T temp = array[lowIndex];
-//			array[lowIndex] = array[median];
-//			array[median] = temp;
+			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
+			T temp = array[lowIndex];
+			array[lowIndex] = array[median];
+			array[median] = temp;
 			int pivot = partition(array, lowIndex, highIndex, comparator);
 			quickSort(array, lowIndex, pivot - 1, comparator);
 			quickSort(array, pivot + 1, highIndex, comparator);
@@ -322,6 +276,52 @@ public class Group4 {
 				array[i + 1] = array[i--];
 			}
 			array[i + 1] = key;
+		}
+	}
+
+
+	private static void MSDsort(EnhancedString[] array) {
+		int size = array.length;
+		EnhancedString[] auxiliary = new EnhancedString[size];
+		MSDsort(array, auxiliary, 0, size - 1, 0);
+	}
+
+
+	private static void MSDsort(EnhancedString[] array, EnhancedString[] auxiliary, int lowIndex, int highIndex, int digit) {
+		if (lowIndex < highIndex) {
+			int[] count = new int[4]; // 2 possible values + 2
+			for (int i = lowIndex; i <= highIndex; i++) {
+				count[charAt(array[i], digit) + 2]++;
+			}
+			for (int r = 0; r < 3; r++) { // r < 2 possible values + 1
+				count[r + 1] += count[r];
+			}
+			for (int i = lowIndex; i <= highIndex; i++) {
+				auxiliary[count[charAt(array[i], digit) + 1]++] = array[i];
+			}
+			for (int i = lowIndex; i <= highIndex; i++) {
+				array[i] = auxiliary[i - lowIndex]; 
+			}
+			
+			for (int r = 0; r < 2; r++) { // r < 2 since there are 2 possible values
+				MSDsort(array, auxiliary, lowIndex + count[r], lowIndex + count[r + 1] - 1, digit + 1);
+			}
+		}
+	}
+
+
+	private static int charAt(EnhancedString string, int digit) {
+		return (digit < string.length ? string.binaryString.charAt(digit) - '0' : -1);
+	}
+
+
+	// highIndex is exclusive
+	private static <T> void bottomUpMergeSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+		for (int size = 1; size < highIndex; size += size) {
+			T[] temp = array.clone();
+			for (int start = lowIndex; start < highIndex - size; start += (size + size)) {
+				merge(array, temp, start, start + size - 1, Math.min(start + size + size - 1, highIndex - 1), comparator);
+			}
 		}
 	}
 }
