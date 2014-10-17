@@ -56,20 +56,20 @@ public class Group4 {
 //			quickSort2(data, 0, data.length - 1, new EverythingComparator());
 //			insertionSort(data, 0, data.length, new EverythingComparator());
 //			Arrays.sort(data, new EverythingComparator());
-			mergeSort(data, 0, data.length - 1, new EverythingComparator());
+//			mergeSort(data, 0, data.length - 1, new EverythingComparator());
 //			bottomUpMergeSort(data, 0, data.length, new EverythingComparator());
-//			insertionSort(data, 0, data.length, new EverythingComparator());
 			
 			
 			
 //			compareAll(data, new LengthComparator());
 //			compareAll(data, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
-//			quickSort(data, 0, data.length - 1, new AlphabeticalComparator());
+//			quickSort(data, 0, data.length - 1, new EverythingComparator());
 //			Arrays.sort(data, new LengthAndSumComparator());
 //			quickSort(data, 0, data.length - 1, new SumOfOnesComparator());
 //			quickSort(data, 0, data.length - 1, new LengthComparator());
-//			quickSort(data, 0, data.length - 1, new EverythingComparator());
+			quickSort(data, 0, data.length - 1, new EverythingComparator());
+//			insertionSort(data, 0, data.length, new EverythingComparator());
 //			Arrays.sort(data, new AlphabeticalComparator());
 //			insertionSort(data, 0, data.length, new AlphabeticalComparator());
 //			Arrays.sort(data, new SumOfOnesComparator());
@@ -125,12 +125,12 @@ public class Group4 {
 
 
 	private static <T> void quick3Sort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
-		if (highIndex > lowIndex) { // +12 or +20
+		if (highIndex > lowIndex + 12) { // +12 or +20
 			/* I'm not sure if this makes it faster */
-//			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
-//			T temporary = array[lowIndex];
-//			array[lowIndex] = array[median];
-//			array[median] = temporary;
+			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
+			T temporary = array[lowIndex];
+			array[lowIndex] = array[median];
+			array[median] = temporary;
 			int lesserIndex = lowIndex;
 			int greaterIndex = highIndex;
 			T key = array[lowIndex];
@@ -208,11 +208,11 @@ public class Group4 {
 
 	// endIndex is inclusive
 	private static <T> void quickSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
-		if (lowIndex < highIndex - 20) {  // -12 and -20 seems good
-			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
-			T temp = array[lowIndex];
-			array[lowIndex] = array[median];
-			array[median] = temp;
+		if (lowIndex < highIndex) {  // -12 and -20 seems good
+//			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
+//			T temp = array[lowIndex];
+//			array[lowIndex] = array[median];
+//			array[median] = temp;
 			int pivot = partition(array, lowIndex, highIndex, comparator);
 			quickSort(array, lowIndex, pivot - 1, comparator);
 			quickSort(array, pivot + 1, highIndex, comparator);
