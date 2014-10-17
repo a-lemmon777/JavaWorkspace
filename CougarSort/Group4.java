@@ -49,8 +49,8 @@ public class Group4 {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 			
-//			quick3Sort(data, 0, data.length - 1, new EverythingComparator());
-			quick3Median3Sort(data, 0, data.length - 1, new EverythingComparator());
+			quick3Sort(data, 0, data.length - 1, new EverythingComparator());
+//			quick3Median3Sort(data, 0, data.length - 1, new EverythingComparator());
 //			mergeSort(data, 0, data.length - 1, new EverythingComparator());
 //			quick3Ins12Median3Sort(data, 0, data.length - 1, new EverythingComparator());
 //			quickSort(data, 0, data.length - 1, new EverythingComparator());
@@ -94,20 +94,20 @@ public class Group4 {
 	}
 
 
-	private static <T> void quick3Sort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+	private static void quick3Sort(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		if (highIndex > lowIndex) {
 			int lesserIndex = lowIndex;
 			int greaterIndex = highIndex;
-			T key = array[lowIndex];
+			EnhancedString key = array[lowIndex];
 			int i = lowIndex;
 			while (i <= greaterIndex) {
 				int comparison = comparator.compare(array[i], key);
 				if (comparison < 0) {
-					T temp = array[lesserIndex];
+					EnhancedString temp = array[lesserIndex];
 					array[lesserIndex++] = array[i];
 					array[i++] = temp;
 				} else if (comparison > 0) {
-					T temp = array[i];
+					EnhancedString temp = array[i];
 					array[i] = array[greaterIndex];
 					array[greaterIndex--] = temp;
 				} else {
@@ -120,25 +120,25 @@ public class Group4 {
 		}
 	}
 	
-	private static <T> void quick3Median3Sort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+	private static void quick3Median3Sort(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		if (highIndex > lowIndex) {
 			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
 			
-			T temporary = array[lowIndex];
+			EnhancedString temporary = array[lowIndex];
 			array[lowIndex] = array[median];
 			array[median] = temporary;
 			int lesserIndex = lowIndex;
 			int greaterIndex = highIndex;
-			T key = array[lowIndex];
+			EnhancedString key = array[lowIndex];
 			int i = lowIndex;
 			while (i <= greaterIndex) {
 				int comparison = comparator.compare(array[i], key);
 				if (comparison < 0) {
-					T temp = array[lesserIndex];
+					EnhancedString temp = array[lesserIndex];
 					array[lesserIndex++] = array[i];
 					array[i++] = temp;
 				} else if (comparison > 0) {
-					T temp = array[i];
+					EnhancedString temp = array[i];
 					array[i] = array[greaterIndex];
 					array[greaterIndex--] = temp;
 				} else {
