@@ -1,5 +1,5 @@
 
-public class EnhancedString {//implements Comparable<EnhancedString>{
+public class EnhancedString implements Comparable<EnhancedString> {
 	
 	public String binaryString;
 	public int length;
@@ -13,16 +13,16 @@ public class EnhancedString {//implements Comparable<EnhancedString>{
 		}
 	}
 
-//	@Override
-//	public int compareTo(EnhancedString other) {
-//		int lengthDifference = this.length - other.length;
-//		if (lengthDifference != 0) {
-//			return lengthDifference;
-//		}
-//		int sumOfOnesDifference = this.sumOfOnes - other.sumOfOnes;
-//		if (sumOfOnesDifference != 0) {
-//			return sumOfOnesDifference;
-//		}
-//		return this.binaryString.compareTo(other.binaryString);
-//	}
+	@Override
+	public int compareTo(EnhancedString other) {
+		int lengthDifference = this.length - other.length;
+		if (lengthDifference != 0) {
+			return lengthDifference;
+		}
+		int sumOfOnesDifference = this.sumOfOnes - other.sumOfOnes;
+		if (sumOfOnesDifference != 0) {
+			return sumOfOnesDifference;
+		}
+		return this.binaryString.compareTo(other.binaryString);
+	}
 }

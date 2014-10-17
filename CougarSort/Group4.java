@@ -49,8 +49,8 @@ public class Group4 {
 				data[i] = new EnhancedString(rawInput.get(i));
 			}
 			
-			quick3Sort(data, 0, data.length - 1, new EverythingComparator());
-//			quick3Median3Sort(data, 0, data.length - 1, new EverythingComparator());
+//			quick3Sort(data, 0, data.length - 1);
+			quick3Median3Sort(data, 0, data.length - 1, new EverythingComparator());
 //			mergeSort(data, 0, data.length - 1, new EverythingComparator());
 //			quick3Ins12Median3Sort(data, 0, data.length - 1, new EverythingComparator());
 //			quickSort(data, 0, data.length - 1, new EverythingComparator());
@@ -94,14 +94,15 @@ public class Group4 {
 	}
 
 
-	private static void quick3Sort(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
+	private static void quick3Sort(EnhancedString[] array, int lowIndex, int highIndex) {
 		if (highIndex > lowIndex) {
 			int lesserIndex = lowIndex;
 			int greaterIndex = highIndex;
 			EnhancedString key = array[lowIndex];
 			int i = lowIndex;
 			while (i <= greaterIndex) {
-				int comparison = comparator.compare(array[i], key);
+//				int comparison = comparator.compare(array[i], key);
+				int comparison = array[i].compareTo(key);
 				if (comparison < 0) {
 					EnhancedString temp = array[lesserIndex];
 					array[lesserIndex++] = array[i];
@@ -115,8 +116,8 @@ public class Group4 {
 				}
 			}
 			
-			quick3Sort(array, lowIndex, lesserIndex - 1, comparator);
-			quick3Sort(array, greaterIndex + 1, highIndex, comparator);
+			quick3Sort(array, lowIndex, lesserIndex - 1);
+			quick3Sort(array, greaterIndex + 1, highIndex);
 		}
 	}
 	
