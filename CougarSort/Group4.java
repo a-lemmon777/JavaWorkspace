@@ -40,11 +40,11 @@ public class Group4 {
 		data = new EnhancedString[n];
 		Thread.sleep(10);
 
-		Sorter algorithm = new Quick3();
+//		Sorter algorithm = new Quick3();
 //		Sorter algorithm = new Quick3Median3();
 //		Sorter algorithm = new Merge();
 //		Sorter algorithm = new Quick3Ins12Median3();
-//		Sorter algorithm = new Quick();
+		Sorter algorithm = new Quick();
 		long startTime = System.currentTimeMillis();
 
 		// Algorithm
