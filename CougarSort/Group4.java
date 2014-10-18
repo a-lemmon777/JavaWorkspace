@@ -152,7 +152,7 @@ public class Group4 {
 		}
 	}
 	
-	private static <T> int medianOf3(T[] array, int lowIndex, int midIndex, int highIndex, Comparator<T> comparator) {
+	private static int medianOf3(EnhancedString[] array, int lowIndex, int midIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		if (comparator.compare(array[lowIndex], array[midIndex]) < 0) {
 			if (comparator.compare(array[midIndex], array[highIndex]) < 0) {
 				return midIndex;
@@ -173,10 +173,10 @@ public class Group4 {
 	}
 
 
-	private static <T> void quick3Ins12Median3Sort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+	private static void quick3Ins12Median3Sort(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		quick3Ins12Median3(array, lowIndex, highIndex, comparator);
 		for (int j = lowIndex + 1; j < highIndex + 1; j++) {
-			T key = array[j];
+			EnhancedString key = array[j];
 			int i = j - 1;
 			while (i > lowIndex - 1 && comparator.compare(array[i], key) > 0) {
 				array[i + 1] = array[i--];
@@ -185,24 +185,24 @@ public class Group4 {
 		}
 	}
 	
-	private static <T> void quick3Ins12Median3(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+	private static void quick3Ins12Median3(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		if (highIndex > lowIndex + 12) {
 			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
-			T temporary = array[lowIndex];
+			EnhancedString temporary = array[lowIndex];
 			array[lowIndex] = array[median];
 			array[median] = temporary;
 			int lesserIndex = lowIndex;
 			int greaterIndex = highIndex;
-			T key = array[lowIndex];
+			EnhancedString key = array[lowIndex];
 			int i = lowIndex;
 			while (i <= greaterIndex) {
 				int comparison = comparator.compare(array[i], key);
 				if (comparison < 0) {
-					T temp = array[lesserIndex];
+					EnhancedString temp = array[lesserIndex];
 					array[lesserIndex++] = array[i];
 					array[i++] = temp;
 				} else if (comparison > 0) {
-					T temp = array[i];
+					EnhancedString temp = array[i];
 					array[i] = array[greaterIndex];
 					array[greaterIndex--] = temp;
 				} else {
@@ -217,13 +217,13 @@ public class Group4 {
 
 
 	// highIndex is inclusive
-	private static <T> void mergeSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
-		T[] temp = array.clone();
+	private static void mergeSort(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
+		EnhancedString[] temp = array.clone();
 		mergeSort(array, temp, lowIndex, highIndex, comparator);
 	}
 
 
-	private static <T> void mergeSort(T[] array, T[] temp, int lowIndex, int highIndex, Comparator<T> comparator) {
+	private static void mergeSort(EnhancedString[] array, EnhancedString[] temp, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		if (highIndex <= lowIndex) {
 			return;
 		}
@@ -234,7 +234,7 @@ public class Group4 {
 	}
 
 
-	private static <T> void merge(T[] array, T[] temp, int lowIndex, int midIndex, int highIndex, Comparator<T> comparator) {
+	private static void merge(EnhancedString[] array, EnhancedString[] temp, int lowIndex, int midIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		int i = lowIndex;
 		int j = midIndex + 1;
 		for (int k = lowIndex; k <= highIndex; k++) {
@@ -251,7 +251,7 @@ public class Group4 {
 	}
 
 	// endIndex is inclusive
-	private static <T> void quickSort(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
+	private static void quickSort(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
 		if (lowIndex < highIndex) {  // -12 and -20 seems good
 //			int median = medianOf3(array, lowIndex, (lowIndex + highIndex) / 2, highIndex, comparator);
 //			T temp = array[lowIndex];
@@ -263,13 +263,13 @@ public class Group4 {
 		}
 	}
 	
-	private static <T> int partition(T[] array, int lowIndex, int highIndex, Comparator<T> comparator) {
-		T key = array[highIndex]; // Takes pivot from end of section.
+	private static int partition(EnhancedString[] array, int lowIndex, int highIndex, Comparator<EnhancedString> comparator) {
+		EnhancedString key = array[highIndex]; // Takes pivot from end of section.
 		int i = lowIndex - 1;
 		for (int j = lowIndex; j < highIndex; j++) {
 			if (comparator.compare(array[j], key) <= 0) {
 				i++;
-				T temp = array[i];
+				EnhancedString temp = array[i];
 				array[i] = array[j];
 				array[j] = temp;
 			}
