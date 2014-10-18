@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,7 +29,7 @@ public class Group4 {
 
 		// Get the input from the file
 		Path inFile = Paths.get(inputFile);
-		try (BufferedReader reader = Files.newBufferedReader(inFile)) {
+		try (BufferedReader reader = Files.newBufferedReader(inFile, StandardCharsets.UTF_8)) {
 			lambda = Double.parseDouble(reader.readLine());
 			String line = null;
 			while ((line = reader.readLine()) != null) {
@@ -40,11 +41,11 @@ public class Group4 {
 		data = new EnhancedString[n];
 		Thread.sleep(10);
 
-//		Sorter algorithm = new Quick3();
+		Sorter algorithm = new Quick3();
 //		Sorter algorithm = new Quick3Median3();
 //		Sorter algorithm = new Merge();
 //		Sorter algorithm = new Quick3Ins12Median3();
-		Sorter algorithm = new Quick();
+//		Sorter algorithm = new Quick();
 		long startTime = System.currentTimeMillis();
 
 		// Algorithm
@@ -91,7 +92,7 @@ public class Group4 {
 		long endTime = System.currentTimeMillis();
 		System.out.println(endTime - startTime);
 		Path outFile = Paths.get(outputFile);
-		try (BufferedWriter writer = Files.newBufferedWriter(outFile)) {
+		try (BufferedWriter writer = Files.newBufferedWriter(outFile, StandardCharsets.UTF_8)) {
 			for (EnhancedString line : data) {
 				writer.write(line.binaryString);
 				writer.newLine();
