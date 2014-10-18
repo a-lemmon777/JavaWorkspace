@@ -5,6 +5,7 @@ public class Quick3 implements Sorter {
 		quick3Sort(array, 0, array.length - 1);
 	}
 
+	// highIndex is inclusive
 	private static void quick3Sort(EnhancedString[] array, int lowIndex, int highIndex) {
 		if (highIndex > lowIndex) {
 			int lesserIndex = lowIndex;
@@ -12,7 +13,6 @@ public class Quick3 implements Sorter {
 			EnhancedString key = array[lowIndex];
 			int i = lowIndex;
 			while (i <= greaterIndex) {
-//				int comparison = comparator.compare(array[i], key);
 				int comparison = array[i].compareTo(key);
 				if (comparison < 0) {
 					EnhancedString temp = array[lesserIndex];
