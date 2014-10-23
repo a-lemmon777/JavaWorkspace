@@ -18,6 +18,7 @@ public class Group4 {
 	private static int n = 0;
 	private static ArrayList<String> rawInput = new ArrayList<String>();
 	private static EnhancedString[] data;
+	private static Sorter algorithm;
 
 
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -37,14 +38,24 @@ public class Group4 {
 				n++;
 			}
 		}
+		
+		if (lambda >= 3) {
+			algorithm = new Quick();
+		} else if (lambda <= 1) {
+			algorithm = new Quick3();
+		} else if (n <= 40000) {
+			algorithm = new Quick();
+		} else {
+			algorithm = new Quick3();
+		}
 
 		data = new EnhancedString[n];
 		Thread.sleep(10);
-
+		
 //		Sorter algorithm = new Quick3();
 //		Sorter algorithm = new Quick3Median3();
 //		Sorter algorithm = new Merge();
-		Sorter algorithm = new Quick3Ins12Median3();
+//		Sorter algorithm = new Quick3Ins12Median3();
 //		Sorter algorithm = new Quick();
 		long startTime = System.currentTimeMillis();
 
