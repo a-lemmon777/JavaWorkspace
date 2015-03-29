@@ -29,5 +29,4 @@ public class Main {
        // searched (10,000 in this case).
        return searcher.parallelSearch(7, target, list);
    }
-
 }
