@@ -4,19 +4,17 @@ import java.util.Random;
 
 public class DataGenerator2015 {
 	/**
-	 * Competition data is generated as follows: Data consists of
+	 * See Readme for an overview of the data generating process. The result is
+	 * being written to the file given as the first command line argument.
 	 * 
 	 * @param args
-	 *            : arg[0] is the file name for the generated data arg[1] is the
-	 *            number of elements to sort arg[2] is the range of lengths for
-	 *            clusters for the Binomial distribution range arg[3] is the
-	 *            seed for the random number generator All arguments are
-	 *            optional. If there is only one argument, it is interpreted as
-	 *            the file name; if there are only two, the second one is
-	 *            interpreted as the number of elements. If some arguments are
-	 *            not provided, defaults are used. If no file name is provided
-	 *            or if the file name is given as "nofile", the output goes to
-	 *            standard output.
+	 *            : arg[0] is the file name for the generated data, arg[1] is
+	 *            the number of elements to sort, arg[2] is the number of
+	 *            clusters, arg[3] is the seed for the random number generator.
+	 *            All arguments are optional, defaults are specified in the
+	 *            program. If no file name is provided or if the file name is
+	 *            given as "nofile", the output goes to standard output.
+	 * 
 	 * 
 	 *            Author: Elena Machkasova
 	 */
@@ -52,24 +50,22 @@ public class DataGenerator2015 {
 
 		String[] data = new String[n];
 
-		// generateCluster(data, 0, 100, 40, 0.5);
-
 		// if the division is uneven, we make the clusters slightly bigger. Will
 		// get a very few elements overwritten, but that's ok
 		int clusterSize = (int) Math.ceil(((double) n) / clusters);
 
-		// generate larger clusters
+		// generate wide clusters (2/3 of data)
 		for (int i = 0; i < 2 * clusters / 3; ++i) {
 			generateCluster(data, i * clusterSize, clusterSize, n / 10);
 		}
 
-		// generate smaller clusters
+		// generate narrow clusters (1/3 data)
 		for (int i = 0; i < clusters / 3 - 1; ++i) {
 			generateCluster(data, (i + 2 * clusters / 3) * clusterSize,
 					clusterSize, n / 1000);
 		}
 
-		// the last cluster cannot go over
+		// the last cluster cannot go over, so handling it separately
 		generateCluster(data, (clusters - 1) * clusterSize, n - (clusters - 1)
 				* clusterSize, n / 1000);
 
@@ -85,8 +81,9 @@ public class DataGenerator2015 {
 		System.out.println("Generating data: file = " + filename + " n = " + n
 				+ " number of clusters = " + clusters);
 
-		System.out.println(pad(8567));
-		System.out.println(pad(1));
+		// test prints
+		// System.out.println(pad(8567));
+		// System.out.println(pad(1));
 
 		// the output goes to the standard output (console)
 		if (filename.equals("nofile")) {
