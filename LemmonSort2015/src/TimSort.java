@@ -83,41 +83,41 @@ public class TimSort {
 	}
 
 	// the inner class has to be static because it is used in a static method
-	private static class DataComparator implements Comparator<Data> {
-
-		@Override
-		public int compare(Data value1, Data value2) {
-			int prefixDifference = value2.prefixValue - value1.prefixValue;
-			if (prefixDifference != 0) {
-				// negative iff value1 should precede value2
-				return prefixDifference;
-			}
-			// negative iff value1 should precede value2
-			return value1.integerValue - value2.integerValue;
-		}
-	}
+//	private static class DataComparator implements Comparator<Data> {
+//
+//		@Override
+//		public int compare(Data value1, Data value2) {
+//			int prefixDifference = value2.prefixValue - value1.prefixValue;
+//			if (prefixDifference != 0) {
+//				// negative iff value1 should precede value2
+//				return prefixDifference;
+//			}
+//			// negative iff value1 should precede value2
+//			return value1.integerValue - value2.integerValue;
+//		}
+//	}
 	
-	private static class Data implements Comparable<Data> {
-		public String fullString;
-		public int prefixValue;
-		public int integerValue;
-		
-		public Data(String input) {
-			fullString = input;
-			integerValue = new Integer(input.substring(2));
-			prefixValue = (new Integer(input.substring(2, 3)) + new Integer(input.substring(3, 4)) + new Integer(input.substring(4, 5)) + new Integer(input.substring(5, 6))) % 10;
-		}
-
-		@Override
-		public int compareTo(Data value2) {
-			int prefixDifference = value2.prefixValue - this.prefixValue;
-			if (prefixDifference != 0) {
-				// negative iff this should precede value2
-				return prefixDifference;
-			}
-			// negative iff this should precede value2
-			return this.integerValue - value2.integerValue;
-		}
-	}
+//	private static class Data implements Comparable<Data> {
+//		public String fullString;
+//		public int prefixValue;
+//		public int integerValue;
+//		
+//		public Data(String input) {
+//			fullString = input;
+//			integerValue = new Integer(input.substring(2));
+//			prefixValue = (new Integer(input.substring(2, 3)) + new Integer(input.substring(3, 4)) + new Integer(input.substring(4, 5)) + new Integer(input.substring(5, 6))) % 10;
+//		}
+//
+//		@Override
+//		public int compareTo(Data value2) {
+//			int prefixDifference = value2.prefixValue - this.prefixValue;
+//			if (prefixDifference != 0) {
+//				// negative iff this should precede value2
+//				return prefixDifference;
+//			}
+//			// negative iff this should precede value2
+//			return this.integerValue - value2.integerValue;
+//		}
+//	}
 
 }
