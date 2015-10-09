@@ -19,11 +19,25 @@ public class DataHelper {
 		
 		try {
 			PrintWriter out = new PrintWriter(outFileName);
-			String firstFourDigits = "";
+			// Counting unique values
+//			String AllDigits = toSort[0].substring(2);
+//			int lastNewThing = 0;
+//			for (int i = 0; i < toSort.length; i++) {
+//				String digits = toSort[i].substring(2);
+//				if (!digits.equals(AllDigits)) {
+//					out.println((i - lastNewThing) + "\t" + AllDigits);
+//					lastNewThing = i;
+//					AllDigits = digits;
+//				}
+//			}
+			// Counting groups by first 4 digits
+			String firstFourDigits = toSort[0].substring(2, 6);
+			int lastNewThing = 0;
 			for (int i = 0; i < toSort.length; i++) {
 				String digits = toSort[i].substring(2, 6);
 				if (!digits.equals(firstFourDigits)) {
-					out.println((i + 1) + "\t" + digits);
+					out.println((i - lastNewThing) + "\t" + firstFourDigits);
+					lastNewThing = i;
 					firstFourDigits = digits;
 				}
 			}
