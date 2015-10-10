@@ -2,11 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
-public class TimSort {
+public class Template {
 
 	public static void main(String[] args) throws InterruptedException {
 		if (args.length < 2) {
@@ -60,14 +58,7 @@ public class TimSort {
 
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
-		Data[] data = new Data[toSort.length];
-		for (int i = 0; i < toSort.length; i++) {
-			data[i] = new Data(toSort[i]);
-		}
-		Arrays.sort(data, new DataComparator());
-		for (int i = 0; i < toSort.length; i++) {
-			toSort[i] = data[i].fullString;
-		}
+
 	}
 
 	private static void writeOutResult(String[] sorted, String outputFilename) {
