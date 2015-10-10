@@ -18,10 +18,10 @@ javac -cp $project/$source $javaMain -d $destination
 cd $destination
 > $timeFile # clear results file
 > $validityFile # clear validity file
-#UNSORTED=(Unsorted_500k.txt Unsorted_800k.txt Unsorted_1M.txt Unsorted_2M.txt Unsorted_3M.txt Unsorted_4M.txt Unsorted_5M.txt)
-#SORTED=(Sorted_500k.txt Sorted_800k.txt Sorted_1M.txt Sorted_2M.txt Sorted_3M.txt Sorted_4M.txt Sorted_5M.txt)
-UNSORTED=(Unsorted_25k.txt)
-SORTED=(Sorted_25k.txt)
+UNSORTED=(Unsorted_500k.txt Unsorted_800k.txt Unsorted_1M.txt Unsorted_2M.txt Unsorted_3M.txt Unsorted_4M.txt Unsorted_5M.txt)
+SORTED=(Sorted_500k.txt Sorted_800k.txt Sorted_1M.txt Sorted_2M.txt Sorted_3M.txt Sorted_4M.txt Sorted_5M.txt)
+#UNSORTED=(Unsorted_25k.txt)
+#SORTED=(Sorted_25k.txt)
 
 for j in "${!UNSORTED[@]}"; do
 	echo "starting ${UNSORTED[$j]}"

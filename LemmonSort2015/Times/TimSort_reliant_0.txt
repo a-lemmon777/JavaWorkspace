@@ -1,0 +1,14 @@
+286	311	413	261	331
+388	373	370	364	375
+541	556	545	562	579
+1097	1067	1061	1099	1133
+4013	4217	4272	4191	3990
+7363	7876	7951	7911	7757
+2894	2958	2990	2925	2870
+Files output.txt and DataFiles/Sorted_500k.txt are identical
+Files output.txt and DataFiles/Sorted_800k.txt are identical
+Files output.txt and DataFiles/Sorted_1M.txt are identical
+Files output.txt and DataFiles/Sorted_2M.txt are identical
+Files output.txt and DataFiles/Sorted_3M.txt are identical
+Files output.txt and DataFiles/Sorted_4M.txt are identical
+Files output.txt and DataFiles/Sorted_5M.txt are identical
