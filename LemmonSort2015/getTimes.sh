@@ -23,10 +23,16 @@ SORTED=(Sorted_500k.txt Sorted_800k.txt Sorted_1M.txt Sorted_2M.txt Sorted_3M.tx
 #UNSORTED=(Unsorted_25k.txt)
 #SORTED=(Sorted_25k.txt)
 
-for j in "${!UNSORTED[@]}"
-do
-cmd="taskset -c 0 java $mainFileName $dataDestination/${UNSORTED[$j]} $outputFile"; for i in $(seq 5); do ($cmd | ([ $i -lt 5 ] && tr '\n' '\t' || tr '\n' '\n') >> $timeFile); sleep 1; done
-diff -q -s $outputFile $dataDestination/${SORTED[$j]} >> $validityFile
+for j in "${!UNSORTED[@]}"; do
+	echo "starting ${UNSORTED[$j]}"
+	cmd="taskset -c 0 java $mainFileName $dataDestination/${UNSORTED[$j]} $outputFile"
+		for i in $(seq 5); do
+			echo "on trial $i"
+			$cmd | ([ $i -lt 5 ] && tr '\n' '\t' || tr '\n' '\n') >> $timeFile
+			sleep 1
+		done
+	diff -q -s $outputFile $dataDestination/${SORTED[$j]} >> $validityFile
+	echo "done with ${UNSORTED[$j]}"
 done
 
 cat $timeFile $validityFile > $resultFile
