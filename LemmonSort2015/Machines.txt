@@ -1,1 +1,9 @@
-sentinel, axiom, eva01, macross, kenshiro, reliant, neoprene, tang, bebop
+sentinel, by door, good
+axiom, front middle, bad
+eva01, maggie's, bad
+macross, across from axiom, bad
+kenshiro, across from neoprene, bad
+reliant, by metal box, good
+neoprene, front middle away from door, bad
+tang, across from coat hooks, bad
+bebop, by window, bad
