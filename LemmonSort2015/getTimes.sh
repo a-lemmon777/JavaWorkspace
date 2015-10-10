@@ -1,16 +1,33 @@
 #!/bin/bash
 
-# The name of the main class, including .java
-javaMain=$1
-projectSource=/home/lemmo031/JavaWorkspace/LemmonSort2015/src
-javac -cp /home/lemmo031/JavaWorkspace/LemmonSort2015/src/ /home/lemmo031/JavaWorkspace/LemmonSort2015/src/TimSort.java -d /tmp/Sorting/
-cd /tmp/Sorting
-> times.txt
-UNSORTED=(Unsorted_25k.txt)
-SORTED=(Sorted_25k.txt)
+javaMain=$1 # The path of the main class, including .java extension
+resultFileSuffix=$2 # Allows user to have a unique output file for each run
+mainFileName=$(basename $javaMain .java) # The name of the main class, without .java extension
+resultFile="${mainFileName}_${resultFileSuffix}.txt"
+project=/home/lemmo031/JavaWorkspace/LemmonSort2015
+destination=/tmp/Sorting/
+dataDestination=DataFiles
+dataDirectory=/home/lemmo031/JavaWorkspace/LemmonSort2015/DataFiles # It's important that this has no trailing slash
+source=src
+timeFile=times.txt
+validityFile=validity.txt
+outputFile=output.txt
+
+rsync -r -u $dataDirectory $destination # only copies data files if they have been updated
+javac -cp $project/$src $javaMain -d $destination
+cd $destination
+> $timeFile # clear results file
+> $validityFile # clear validity file
+UNSORTED=(Unsorted_500k.txt Unsorted_800k.txt Unsorted_1M.txt Unsorted_2M.txt Unsorted_3M.txt Unsorted_4M.txt Unsorted_5M.txt)
+SORTED=(Sorted_500k.txt Sorted_800k.txt Sorted_1M.txt Sorted_2M.txt Sorted_3M.txt Sorted_4M.txt Sorted_5M.txt)
+#UNSORTED=(Unsorted_25k.txt)
+#SORTED=(Sorted_25k.txt)
 
 for j in "${!UNSORTED[@]}"
 do
-cmd="taskset -c 0 java $1 ${UNSORTED[$j]} output.txt"; for i in $(seq 5); do ($cmd | ([ $i -lt 5 ] && tr '\n' '\t' || tr '\n' '\n') >> times.txt); sleep 1; done
-diff -q -s output.txt ${SORTED[$j]}
+cmd="taskset -c 0 java $mainFileName $dataDestination/${UNSORTED[$j]} $outputFile"; for i in $(seq 5); do ($cmd | ([ $i -lt 5 ] && tr '\n' '\t' || tr '\n' '\n') >> $timeFile); sleep 1; done
+diff -q -s $outputFile $dataDestination/${SORTED[$j]} >> $validityFile
 done
+
+cat $timeFile $validityFile > $resultFile
+cp $resultFile $project/Times

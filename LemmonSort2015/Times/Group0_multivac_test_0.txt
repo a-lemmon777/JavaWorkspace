@@ -1,0 +1,14 @@
+1895	1887	1833	1876	1900
+2984	2922	2905	2910	2966
+3699	3701	3783	3704	3716
+8039	8227	8165	8304	8157
+13192	13032	13114	13079	12991
+18584	17483	18076	18477	18590
+22751	22675	22476	22689	21424
+Files output.txt and DataFiles/Unsorted_500k.txt differ
+Files output.txt and DataFiles/Sorted_800k.txt are identical
+Files output.txt and DataFiles/Sorted_1M.txt are identical
+Files output.txt and DataFiles/Sorted_2M.txt are identical
+Files output.txt and DataFiles/Sorted_3M.txt are identical
+Files output.txt and DataFiles/Sorted_4M.txt are identical
+Files output.txt and DataFiles/Sorted_5M.txt are identical
