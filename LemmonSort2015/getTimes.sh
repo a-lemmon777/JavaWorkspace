@@ -23,6 +23,7 @@ cd $destination
 UNSORTED=(Unsorted_25k.txt)
 SORTED=(Sorted_25k.txt)
 
+
 for j in "${!UNSORTED[@]}"; do
 	echo "starting ${UNSORTED[$j]}"
 	cmd="taskset -c 0 java $mainFileName $dataDestination/${UNSORTED[$j]} $outputFile"
