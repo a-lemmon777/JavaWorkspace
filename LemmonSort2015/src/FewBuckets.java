@@ -58,7 +58,8 @@ public class FewBuckets {
 
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
-		ArrayList[] buckets = new ArrayList[10];
+		@SuppressWarnings("unchecked")
+		ArrayList<String>[] buckets = (ArrayList<String>[]) new ArrayList[10];
 		for (int i = 0; i < buckets.length; i++) {
 			buckets[i] = new ArrayList<String>();
 		}

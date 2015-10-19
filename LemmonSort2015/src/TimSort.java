@@ -2,8 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class TimSort {
@@ -64,10 +62,10 @@ public class TimSort {
 		for (int i = 0; i < toSort.length; i++) {
 			data[i] = new Data(toSort[i]);
 		}
-		Arrays.sort(data, new DataComparator());
-		for (int i = 0; i < toSort.length; i++) {
-			toSort[i] = data[i].fullString;
-		}
+//		Arrays.sort(data, new DataComparator());
+//		for (int i = 0; i < toSort.length; i++) {
+//			toSort[i] = data[i].fullString;
+//		}
 	}
 
 	private static void writeOutResult(String[] sorted, String outputFilename) {
@@ -79,6 +77,30 @@ public class TimSort {
 			out.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private static class Data implements Comparable<Data> {
+//		public String fullString;
+		public int prefixValue;
+//		public int integerValue;
+//
+		public Data(String input) {
+//			fullString = input;
+//			integerValue = new Integer(input.substring(2));
+			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
+		}
+
+		@Override
+		public int compareTo(Data value2) {
+			return -1;
+//			int prefixDifference = value2.prefixValue - this.prefixValue;
+//			if (prefixDifference != 0) {
+//				// negative iff this should precede value2
+//				return prefixDifference;
+//			}
+//			// negative iff this should precede value2
+//			return this.integerValue - value2.integerValue;
 		}
 	}
 }
