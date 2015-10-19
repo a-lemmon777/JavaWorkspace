@@ -10,8 +10,8 @@ dataFilePath=$project/DataFiles
 
 javac -cp $project/$source $javaMain -d $destination
 cd $destination
-UNSORTED=(Unsorted_500k.txt Unsorted_2M.txt Unsorted_5M.txt)
-SORTED=(Sorted_500k.txt Sorted_2M.txt Sorted_5M.txt)
+UNSORTED=(Unsorted_500k.txt Unsorted_700k.txt Unsorted_2M.txt Unsorted_5M.txt)
+SORTED=(Sorted_500k.txt Sorted_700k.txt Sorted_2M.txt Sorted_5M.txt)
 for j in "${!UNSORTED[@]}"; do
 	echo "starting ${UNSORTED[$j]}"
 	cmd="taskset -c 0 java $mainFileName $dataFilePath/${UNSORTED[$j]} $outputFile"
