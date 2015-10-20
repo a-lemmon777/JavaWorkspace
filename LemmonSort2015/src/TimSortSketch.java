@@ -101,9 +101,9 @@ public class TimSortSketch {
 //					(fourthDigit - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
 //					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
 			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
-//			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
-//					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
-//					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
+			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
+					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
+					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
 			
 			// using longValue
 //			int prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
@@ -129,9 +129,9 @@ public class TimSortSketch {
 //			integerValue = getIntegerValue(input);
 
 			// factor out most of the -48s, except first one since that would cause out of range to occur.
-			integerValue = (input.charAt(2) - 48) * 100000000 + input.charAt(3) * 10000000 + input.charAt(4) * 1000000 +
-					input.charAt(5) * 100000 + input.charAt(6) * 10000 + input.charAt(7) * 1000 + input.charAt(8) * 100 +
-					input.charAt(9) * 10 + input.charAt(10) - 533333328;
+//			integerValue = (input.charAt(2) - 48) * 100000000 + input.charAt(3) * 10000000 + input.charAt(4) * 1000000 +
+//					input.charAt(5) * 100000 + input.charAt(6) * 10000 + input.charAt(7) * 1000 + input.charAt(8) * 100 +
+//					input.charAt(9) * 10 + input.charAt(10) - 533333328;
 			//			prefixValue = (new Integer(input.charAt(2)) + new Integer(input.charAt(3)) + new Integer(input.charAt(4)) + new Integer(input.charAt(5))) % 10;
 			//			prefixValue = (new Integer(input.substring(2, 3)) + new Integer(input.substring(3, 4)) + new Integer(input.substring(4, 5)) + new Integer(input.substring(5, 6))) % 10;
 		}
