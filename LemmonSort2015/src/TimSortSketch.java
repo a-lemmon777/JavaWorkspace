@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class TimSort {
+public class TimSortSketch {
 
 	public static void main(String[] args) throws InterruptedException {
 		if (args.length < 2) {
@@ -85,35 +85,38 @@ public class TimSort {
 	private static class Data implements Comparable<Data> {
 //		public static int[][][][] mods = new int[10][10][10][10];
 		public String fullString;
-//		public int prefixValue;
-//		public int integerValue;
-		public long longValue;
+		public int prefixValue;
+		public int integerValue;
+//		public long longValue;
 		//
 		public Data(String input) {
 			fullString = input;
-			int firstDigit = input.charAt(2);
-			int secondDigit = input.charAt(3);
-			int thirdDigit = input.charAt(4);
-			int fourthDigit = input.charAt(5);
+//			int firstDigit = input.charAt(2);
+//			int secondDigit = input.charAt(3);
+//			int thirdDigit = input.charAt(4);
+//			int fourthDigit = input.charAt(5);
 			// using intValue
 //			prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
 //			integerValue = (firstDigit - 48) * 100000000 + (secondDigit - 48) * 10000000 + (thirdDigit - 48) * 1000000 +
 //					(fourthDigit - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
 //					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
-//			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
+			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
 //			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
 //					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
 //					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
 			
 			// using longValue
-			int prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
-			longValue = (9 - prefixValue) * 1000000000L + (firstDigit - 48) * 100000000 + (secondDigit - 48) * 10000000 + (thirdDigit - 48) * 1000000 +
-					(fourthDigit - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
-					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
+//			int prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
+//			longValue = (9 - prefixValue) * 1000000000L + (firstDigit - 48) * 100000000 + (secondDigit - 48) * 10000000 + (thirdDigit - 48) * 1000000 +
+//					(fourthDigit - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
+//					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
 //			int prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
 //			longValue = (9 - prefixValue) * 1000000000L + (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
 //					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
 //					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
+//			longValue = (9 - prefixValue) * 1000000000L + input.charAt(2) * 100000000L + input.charAt(3) * 10000000L + input.charAt(4) * 1000000L +
+//					input.charAt(5) * 100000L + input.charAt(6) * 10000L + input.charAt(7) * 1000L + input.charAt(8) * 100L +
+//					input.charAt(9) * 10L + input.charAt(10) - 5333333328L;
 			
 			
 //			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
@@ -126,9 +129,9 @@ public class TimSort {
 //			integerValue = getIntegerValue(input);
 
 			// factor out most of the -48s, except first one since that would cause out of range to occur.
-//			integerValue = (input.charAt(2) - 48) * 100000000 + input.charAt(3) * 10000000 + input.charAt(4) * 1000000 +
-//					input.charAt(5) * 100000 + input.charAt(6) * 10000 + input.charAt(7) * 1000 + input.charAt(8) * 100 +
-//					input.charAt(9) * 10 + input.charAt(10) - 533333328;
+			integerValue = (input.charAt(2) - 48) * 100000000 + input.charAt(3) * 10000000 + input.charAt(4) * 1000000 +
+					input.charAt(5) * 100000 + input.charAt(6) * 10000 + input.charAt(7) * 1000 + input.charAt(8) * 100 +
+					input.charAt(9) * 10 + input.charAt(10) - 533333328;
 			//			prefixValue = (new Integer(input.charAt(2)) + new Integer(input.charAt(3)) + new Integer(input.charAt(4)) + new Integer(input.charAt(5))) % 10;
 			//			prefixValue = (new Integer(input.substring(2, 3)) + new Integer(input.substring(3, 4)) + new Integer(input.substring(4, 5)) + new Integer(input.substring(5, 6))) % 10;
 		}
@@ -164,18 +167,18 @@ public class TimSort {
 		@Override
 		public int compare(Data value1, Data value2) {
 			// comparator for prefix and value
-//			int prefixDifference = value2.prefixValue - value1.prefixValue;
-//			if (prefixDifference != 0) {
-//				// negative iff value1 should precede value2
-//				return prefixDifference;
-//			}
-//			// negative iff value1 should precede value2
-//			return value1.integerValue - value2.integerValue;
+			int prefixDifference = value2.prefixValue - value1.prefixValue;
+			if (prefixDifference != 0) {
+				// negative iff value1 should precede value2
+				return prefixDifference;
+			}
+			// negative iff value1 should precede value2
+			return value1.integerValue - value2.integerValue;
 			
 			
 			// comparator for just longValue
 //			// negative iff value1 should precede value2
-			return (value1.longValue < value2.longValue) ? -1 : ((value1.longValue == value2.longValue) ? 0 : 1);
+//			return (value1.longValue < value2.longValue) ? -1 : ((value1.longValue == value2.longValue) ? 0 : 1);
 //			long diff = value1.longValue - value2.longValue;
 //			return ((int) ((diff >> 63) | (-diff >>> 63)));
 //			return ((int) ((diff >> 32) | (-diff >>> 33)));
