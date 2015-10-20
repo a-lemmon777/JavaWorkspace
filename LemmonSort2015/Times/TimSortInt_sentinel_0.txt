@@ -1,0 +1,14 @@
+213	160	241	170	204
+220	221	217	221	223
+306	310	315	307	305
+907	884	885	884	882
+973	979	980	980	981
+1368	1366	1373	1363	1362
+1711	1707	1709	1705	1715
+Files output.txt and DataFiles/Sorted_500k.txt are identical
+Files output.txt and DataFiles/Sorted_700k.txt are identical
+Files output.txt and DataFiles/Sorted_1M.txt are identical
+Files output.txt and DataFiles/Sorted_2M.txt are identical
+Files output.txt and DataFiles/Sorted_3M.txt are identical
+Files output.txt and DataFiles/Sorted_4M.txt are identical
+Files output.txt and DataFiles/Sorted_5M.txt are identical
