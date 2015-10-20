@@ -91,10 +91,10 @@ public class TimSort {
 		//
 		public Data(String input) {
 			fullString = input;
-//			int firstDigit = input.charAt(2);
-//			int secondDigit = input.charAt(3);
-//			int thirdDigit = input.charAt(4);
-//			int fourthDigit = input.charAt(5);
+			int firstDigit = input.charAt(2);
+			int secondDigit = input.charAt(3);
+			int thirdDigit = input.charAt(4);
+			int fourthDigit = input.charAt(5);
 			// using intValue
 //			prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
 //			integerValue = (firstDigit - 48) * 100000000 + (secondDigit - 48) * 10000000 + (thirdDigit - 48) * 1000000 +
@@ -106,14 +106,14 @@ public class TimSort {
 //					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
 			
 			// using longValue
-//			int prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
-//			longValue = (9 - prefixValue) * 1000000000L + (firstDigit - 48) * 100000000 + (secondDigit - 48) * 10000000 + (thirdDigit - 48) * 1000000 +
-//					(fourthDigit - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
-//					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
-			int prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
-			longValue = (9 - prefixValue) * 1000000000L + (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
-					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
+			int prefixValue = (firstDigit + secondDigit + thirdDigit + fourthDigit + 8) % 10;
+			longValue = (9 - prefixValue) * 1000000000L + (firstDigit - 48) * 100000000 + (secondDigit - 48) * 10000000 + (thirdDigit - 48) * 1000000 +
+					(fourthDigit - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
 					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
+//			int prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
+//			longValue = (9 - prefixValue) * 1000000000L + (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
+//					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
+//					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
 			
 			
 //			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
