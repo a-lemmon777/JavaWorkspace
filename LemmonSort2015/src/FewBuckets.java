@@ -59,12 +59,16 @@ public class FewBuckets {
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
 		@SuppressWarnings("unchecked")
-		ArrayList<String>[] buckets = (ArrayList<String>[]) new ArrayList[10];
+		ArrayList<Data>[] buckets = (ArrayList<Data>[]) new ArrayList[10];
 		for (int i = 0; i < buckets.length; i++) {
-			buckets[i] = new ArrayList<String>();
+			buckets[i] = new ArrayList<Data>();
 		}
-		buckets[0].add("Hello");
-		System.out.println(buckets[0].get(0));
+		for (int i = 0; i < toSort.length; i++) {
+			String input = toSort[i];
+			buckets[(input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10].add(new Data(input));
+		}
+//		buckets[0].add("Hello");
+//		System.out.println(buckets[0].get(0));
 	}
 
 	private static void writeOutResult(String[] sorted, String outputFilename) {
@@ -76,6 +80,32 @@ public class FewBuckets {
 			out.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private static class Data implements Comparable<Data> {
+		public String fullString;
+//		public int prefixValue;
+		public int integerValue;
+		//
+		public Data(String input) {
+			fullString = input;
+			integerValue = Integer.parseInt(input.substring(2));
+			//			prefixValue = (new Integer(input.charAt(2)) + new Integer(input.charAt(3)) + new Integer(input.charAt(4)) + new Integer(input.charAt(5))) % 10;
+			//			prefixValue = (new Integer(input.substring(2, 3)) + new Integer(input.substring(3, 4)) + new Integer(input.substring(4, 5)) + new Integer(input.substring(5, 6))) % 10;
+//			prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
+		}
+
+		@Override
+		public int compareTo(Data value2) {
+			return -1;
+			//			int prefixDifference = value2.prefixValue - this.prefixValue;
+			//			if (prefixDifference != 0) {
+			//				// negative iff this should precede value2
+			//				return prefixDifference;
+			//			}
+			//			// negative iff this should precede value2
+			//			return this.integerValue - value2.integerValue;
 		}
 	}
 }
