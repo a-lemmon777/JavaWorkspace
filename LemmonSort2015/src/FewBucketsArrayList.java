@@ -3,9 +3,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Scanner;
 
-public class FewBuckets {
+public class FewBucketsArrayList {
 
 	public static void main(String[] args) throws InterruptedException {
 		if (args.length < 2) {
