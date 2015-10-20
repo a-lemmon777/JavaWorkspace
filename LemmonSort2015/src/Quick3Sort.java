@@ -2,10 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class TimSortLong {
+public class Quick3Sort {
 
 	public static void main(String[] args) throws InterruptedException {
 		if (args.length < 2) {
@@ -59,11 +58,11 @@ public class TimSortLong {
 
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
-		LongData[] data = new LongData[toSort.length];
+		ModData[] data = new ModData[toSort.length];
 		for (int i = 0; i < toSort.length; i++) {
-			data[i] = new LongData(toSort[i]);
+			data[i] = new ModData(toSort[i]);
 		}
-		Arrays.sort(data, new LongDataComparator());
+		Quick3.sortArray(data);
 		for (int i = 0; i < toSort.length; i++) {
 			toSort[i] = data[i].fullString;
 		}
@@ -80,26 +79,4 @@ public class TimSortLong {
 			e.printStackTrace();
 		}
 	}
-
-//	private static class Data {
-//		public String fullString;
-//		public long longValue;
-//
-//		public Data(String input) {
-//			fullString = input;
-//			int prefixValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
-//			longValue = (9 - prefixValue) * 1000000000L + (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
-//					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
-//					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);			
-//		}
-//	}
-//
-//	public static class DataComparator implements Comparator<Data> {
-//
-//		@Override
-//		public int compare(Data value1, Data value2) {
-//			// negative iff value1 should precede value2
-//			return (value1.longValue < value2.longValue) ? -1 : ((value1.longValue == value2.longValue) ? 0 : 1);
-//		}
-//	}
 }
