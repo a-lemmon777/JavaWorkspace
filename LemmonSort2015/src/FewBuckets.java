@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class FewBuckets {
@@ -60,20 +61,34 @@ public class FewBuckets {
 	private static void sort(String[] toSort) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Data>[] buckets = (ArrayList<Data>[]) new ArrayList[10];
-		int bucketStartSize = toSort.length / 2;
-		for (int i = 0; i < buckets.length; i++) {
+		int bucketStartSize = toSort.length / 5;
+		for (int i = 0; i < 10; i++) {
 			// make buckets pretty big
 			buckets[i] = new ArrayList<Data>(bucketStartSize);
 		}
-		for (int i = 0; i < toSort.length; i++) {
+		int toSortLength = toSort.length;
+		
+		// fill buckets
+		for (int i = 0; i < toSortLength; i++) {
 			String input = toSort[i];
 			buckets[(input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10].add(new Data(input));
 		}
-		// try copy back to tame the GC
-//		for (int i = 0; i < toSort.length; i++) {
-//			String input = toSort[i];
-//			buckets[(input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10].add(new Data(input));
-//		}
+		
+		// sort buckets
+		DataComparator comparator = new DataComparator();
+		for (int i = 0; i < 10; i++) {
+			buckets[i].sort(comparator);
+		}
+		
+		// copy back to input array
+		int index = 0;
+		for (int i = 9; i >= 0; i--) {
+			ArrayList<Data> bucket = buckets[i];
+			int bucketSize = bucket.size();
+			for (int j = 0; j < bucketSize; j++) {
+				toSort[index++] = bucket.get(j).fullString;
+			}
+		}
 	}
 
 	private static void writeOutResult(String[] sorted, String outputFilename) {
@@ -97,6 +112,15 @@ public class FewBuckets {
 			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
 					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
 					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
+		}
+	}
+	
+	public static class DataComparator implements Comparator<Data> {
+
+		@Override
+		public int compare(Data value1, Data value2) {
+			// negative iff value1 should precede value2
+			return value1.integerValue - value2.integerValue;
 		}
 	}
 }
