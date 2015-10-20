@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class TimSortInt {
@@ -60,11 +59,11 @@ public class TimSortInt {
 
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
-		Data[] data = new Data[toSort.length];
+		ModData[] data = new ModData[toSort.length];
 		for (int i = 0; i < toSort.length; i++) {
-			data[i] = new Data(toSort[i]);
+			data[i] = new ModData(toSort[i]);
 		}
-		Arrays.sort(data, new DataComparator());
+		Arrays.sort(data, new ModDataComparator());
 		for (int i = 0; i < toSort.length; i++) {
 			toSort[i] = data[i].fullString;
 		}
@@ -79,35 +78,6 @@ public class TimSortInt {
 			out.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-	}
-
-	private static class Data {
-		public String fullString;
-		public int modValue;
-		public int integerValue;
-		//
-		public Data(String input) {
-			fullString = input;
-			modValue = (input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10;
-			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
-					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
-					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
-		}
-	}
-
-	public static class DataComparator implements Comparator<Data> {
-
-		@Override
-		public int compare(Data value1, Data value2) {
-			// comparator for modValue and integerValue
-			int prefixDifference = value2.modValue - value1.modValue;
-			if (prefixDifference != 0) {
-				// negative iff value1 should precede value2
-				return prefixDifference;
-			}
-			// negative iff value1 should precede value2
-			return value1.integerValue - value2.integerValue;
 		}
 	}
 }
