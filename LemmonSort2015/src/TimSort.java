@@ -177,7 +177,8 @@ public class TimSort {
 //			// negative iff value1 should precede value2
 //			return (value1.longValue < value2.longValue) ? -1 : ((value1.longValue == value2.longValue) ? 0 : 1);
 			long diff = value1.longValue - value2.longValue;
-			return ((int) ((diff >> 63) | (-diff >>> 63)));
+//			return ((int) ((diff >> 63) | (-diff >>> 63)));
+			return ((int) ((diff >> 32) | (-diff >>> 33)));
 			
 //			return -1;
 		}
