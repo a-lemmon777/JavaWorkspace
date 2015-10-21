@@ -61,30 +61,31 @@ public class FewBucketsArrayList {
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Data>[] buckets = (ArrayList<Data>[]) new ArrayList[10];
+		ArrayList<IntData>[] buckets = (ArrayList<IntData>[]) new ArrayList[10];
 		int bucketStartSize = toSort.length / 5;
 		for (int i = 0; i < 10; i++) {
 			// make buckets pretty big
-			buckets[i] = new ArrayList<Data>(bucketStartSize);
+			buckets[i] = new ArrayList<IntData>(bucketStartSize);
 		}
 		int toSortLength = toSort.length;
 		
 		// fill buckets
 		for (int i = 0; i < toSortLength; i++) {
 			String input = toSort[i];
-			buckets[(input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10].add(new Data(input));
+			buckets[(input.charAt(2) + input.charAt(3) + input.charAt(4) + input.charAt(5) + 8) % 10].add(new IntData(input));
 		}
 		
 		// sort buckets
-		DataComparator comparator = new DataComparator();
+//		DataComparator comparator = new DataComparator();
 		for (int i = 0; i < 10; i++) {
-			buckets[i].sort(comparator);
+//			buckets[i].sort(comparator);
+			Quick3Int.sortArrayList(buckets[i]);
 		}
 		
 		// copy back to input array
 		int index = 0;
 		for (int i = 9; i >= 0; i--) {
-			ArrayList<Data> bucket = buckets[i];
+			ArrayList<IntData> bucket = buckets[i];
 			int bucketSize = bucket.size();
 			for (int j = 0; j < bucketSize; j++) {
 				toSort[index++] = bucket.get(j).fullString;
@@ -104,24 +105,24 @@ public class FewBucketsArrayList {
 		}
 	}
 	
-	private static class Data {
-		public String fullString;
-		public int integerValue;
-		
-		public Data(String input) {
-			fullString = input;
-			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
-					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
-					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
-		}
-	}
-	
-	public static class DataComparator implements Comparator<Data> {
-
-		@Override
-		public int compare(Data value1, Data value2) {
-			// negative iff value1 should precede value2
-			return value1.integerValue - value2.integerValue;
-		}
-	}
+//	private static class Data {
+//		public String fullString;
+//		public int integerValue;
+//		
+//		public Data(String input) {
+//			fullString = input;
+//			integerValue = (input.charAt(2) - 48) * 100000000 + (input.charAt(3) - 48) * 10000000 + (input.charAt(4) - 48) * 1000000 +
+//					(input.charAt(5) - 48) * 100000 + (input.charAt(6) - 48) * 10000 + (input.charAt(7) - 48) * 1000 + (input.charAt(8) - 48) * 100 +
+//					(input.charAt(9) - 48) * 10 + (input.charAt(10) - 48);
+//		}
+//	}
+//	
+//	public static class DataComparator implements Comparator<Data> {
+//
+//		@Override
+//		public int compare(Data value1, Data value2) {
+//			// negative iff value1 should precede value2
+//			return value1.integerValue - value2.integerValue;
+//		}
+//	}
 }
