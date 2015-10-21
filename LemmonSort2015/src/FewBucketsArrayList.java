@@ -79,7 +79,8 @@ public class FewBucketsArrayList {
 //		DataComparator comparator = new DataComparator();
 		for (int i = 0; i < 10; i++) {
 //			buckets[i].sort(comparator);
-			Quick3Int.sortArrayList(buckets[i]);
+//			Quick3Int.sortArrayList(buckets[i]);
+			QuickInt.sortArrayList(buckets[i]);
 		}
 		
 		// copy back to input array

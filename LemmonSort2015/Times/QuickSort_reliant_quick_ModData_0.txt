@@ -1,0 +1,14 @@
+301	306	304	305	303
+470	465	466	476	467
+845	847	847	846	846
+4864	4802	4860	3992	4834
+4524	4521	4534	4537	4519
+4678	4680	4682	4679	4674
+10257	10251	10228	10235	10225
+Files output.txt and DataFiles/Sorted_500k.txt are identical
+Files output.txt and DataFiles/Sorted_700k.txt are identical
+Files output.txt and DataFiles/Sorted_1M.txt are identical
+Files output.txt and DataFiles/Sorted_2M.txt are identical
+Files output.txt and DataFiles/Sorted_3M.txt are identical
+Files output.txt and DataFiles/Sorted_4M.txt are identical
+Files output.txt and DataFiles/Sorted_5M.txt are identical
