@@ -58,13 +58,25 @@ public class Quick3Sort {
 
 	// YOUR SORTING METHOD GOES HERE: (you may call other methods and use other classes). 
 	private static void sort(String[] toSort) {
-		ModData[] data = new ModData[toSort.length];
+//		ModData[] data = new ModData[toSort.length];
+//		ArrayList<ModData> data = new ArrayList<ModData>(toSort.length);
+//		LongData[] data = new LongData[toSort.length];
+		ArrayList<LongData> data = new ArrayList<LongData>(toSort.length);
 		for (int i = 0; i < toSort.length; i++) {
-			data[i] = new ModData(toSort[i]);
+//			data[i] = new ModData(toSort[i]);
+//			data.add(new ModData(toSort[i]));
+//			data[i] = new LongData(toSort[i]);
+			data.add(new LongData(toSort[i]));
 		}
-		Quick3.sortArray(data);
+//		Quick3Mod.sortArray(data);
+//		Quick3Mod.sortArrayList(data);
+//		Quick3Long.sortArray(data);
+		Quick3Long.sortArrayList(data);
 		for (int i = 0; i < toSort.length; i++) {
-			toSort[i] = data[i].fullString;
+//			toSort[i] = data[i].fullString;
+//			toSort[i] = data.get(i).fullString;
+//			toSort[i] = data[i].fullString;
+			toSort[i] = data.get(i).fullString;
 		}
 	}
 

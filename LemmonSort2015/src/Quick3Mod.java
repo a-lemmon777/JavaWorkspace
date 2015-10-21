@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Quick3 {
+public class Quick3Mod {
 
 	public static void sortArray(ModData[] array) {
 		quick3SortArray(array, 0, array.length - 1);
