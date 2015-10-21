@@ -1,0 +1,14 @@
+138	131	139	139	132
+201	194	201	202	200
+273	273	273	276	283
+829	813	824	825	822
+984	981	980	993	985
+1394	1394	1392	1395	1392
+1808	1808	1812	1811	1813
+Files output.txt and DataFiles/Sorted_500k.txt are identical
+Files output.txt and DataFiles/Sorted_700k.txt are identical
+Files output.txt and DataFiles/Sorted_1M.txt are identical
+Files output.txt and DataFiles/Sorted_2M.txt are identical
+Files output.txt and DataFiles/Sorted_3M.txt are identical
+Files output.txt and DataFiles/Sorted_4M.txt are identical
+Files output.txt and DataFiles/Sorted_5M.txt are identical
