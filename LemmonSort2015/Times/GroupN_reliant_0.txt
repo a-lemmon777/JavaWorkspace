@@ -1,0 +1,14 @@
+342	221	233	261	277
+228	221	223	219	222
+307	307	307	312	314
+899	901	900	908	885
+982	988	986	983	990
+1381	1374	1373	1379	1384
+1728	1820	1806	1733	1725
+Files output.txt and DataFiles/Sorted_500k.txt are identical
+Files output.txt and DataFiles/Sorted_700k.txt are identical
+Files output.txt and DataFiles/Sorted_1M.txt are identical
+Files output.txt and DataFiles/Sorted_2M.txt are identical
+Files output.txt and DataFiles/Sorted_3M.txt are identical
+Files output.txt and DataFiles/Sorted_4M.txt are identical
+Files output.txt and DataFiles/Sorted_5M.txt are identical
